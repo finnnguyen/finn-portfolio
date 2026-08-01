@@ -99,37 +99,37 @@ const projects = [
   },
   {
     rank: 2,
-    title: "E-Commerce Platform (Zara-style)",
+    title: "Spam Tool Kit",
     type: "Team" as const,
     oneLiner:
-      "A full-stack e-commerce platform with secure checkout, CMS-managed product catalog, and order management — built and shipped by a 3-person team.",
+      "A 4-module web app covering email spam detection (97.2% accuracy), SMS spam detection (99.28% accuracy), text analysis, and plagiarism checking — all in one Flask app.",
     bullets: [
-      "End-to-end system: React frontend, Strapi headless CMS, SQL Server database",
-      "Covers authentication, payment flow, and inventory management",
-      "Deployed to production; currently resolving a post-deployment data-sync issue (documented openly in the repo)",
+      "SMS model: 99.28% accuracy, 100% precision, 97.24% F1-score on held-out test set",
+      "Email model: 97.20% accuracy — accepts .txt and .eml file uploads",
+      "4 modules: Email Spam, SMS Spam, Text Analysis, Plagiarism Detection",
     ],
     problem:
-      "Build a working online storefront with authentication, payments, and inventory management — not a mockup, a functioning system.",
+      "Build a multi-feature spam detection toolkit that goes beyond a single classifier — a working web app with real file upload, live text input, and structured output (confidence score, probability bars, risk category).",
     contribution:
-      "Implemented secure user authentication, third-party payment gateway integration, and inventory/order management. Configured and integrated Strapi CMS as the content/data layer connecting to SQL Server, enabling structured content management independent of the codebase. Deployed to Vercel, performed performance optimization to improve load times and scalability, and am currently debugging a post-deployment data-sync issue between the CMS and database layer.",
+      "Owned all technical implementation — model training pipeline, CountVectorizer feature engineering, Flask backend, and the full HTML/CSS/JS web interface across all four modules. Group project for CPSC 483 at Cal State Fullerton.",
     tech: [
-      { label: "React" },
-      { label: "Strapi" },
-      { label: "SQL Server" },
-      { label: "Payment Gateway API" },
-      { label: "Vercel" },
+      { label: "Python" },
+      { label: "scikit-learn" },
+      { label: "Flask" },
+      { label: "CountVectorizer" },
+      { label: "Naive Bayes" },
+      { label: "pandas" },
+      { label: "HTML / CSS / JS" },
     ],
     challenges:
-      "Integrating a headless CMS with a relational database while keeping content editable independently of the codebase. Post-deployment, a data-sync issue emerged between the CMS and the database layer — currently being resolved.",
+      "Building 4 distinct modules into a single coherent app. Feature engineering for two different text domains — email and SMS have very different language patterns. Making outputs actionable with confidence scores and risk levels rather than just spam/not spam.",
     solution:
-      "React frontend consuming a Strapi-managed content and product layer, backed by SQL Server, with a dedicated auth and order-management flow. Architecture separates content concerns (Strapi) from transactional data (SQL Server).",
+      "Separate Multinomial Naive Bayes models trained on domain-specific Kaggle datasets (email_spam.csv, sms_spam.csv) with 80/20 splits. CountVectorizer bag-of-words feature extraction. Plagiarism module uses Jaccard similarity. All four modules served through a single Flask app with a tabbed HTML/CSS/JS interface.",
     results:
-      "Deployed to production on Vercel. A data-sync issue between the CMS and database emerged post-deployment and is actively being debugged — the live demo is currently unreliable, so the architecture diagram is the best way to see the design.",
+      "SMS model: 99.28% accuracy, 100% precision, 94.63% recall, 97.24% F1-score. Email model: 97.20% accuracy. Inference under 1–2ms per message. Training under 1 second.",
     demonstrates:
-      "Full-stack ownership across the entire layer cake, cross-functional teamwork, and the ability to debug real production issues — not just classroom code. Also demonstrates transparency: the known issue is documented in the README rather than hidden.",
-    githubUrl: "https://github.com/finnnguyen",
-    demoNote: "Live demo temporarily offline — data-sync issue in progress (see GitHub README).",
-    archDiagram: <EcommerceArchDiagram />,
+      "Taking a multi-feature ML system from training to a working, user-facing product — not just the model, but the full pipeline including file handling, live inference, and structured UI output across four different tools.",
+    githubUrl: "https://github.com/finnnguyen/AI-Spam_Detect",
   },
   {
     rank: 3,
@@ -196,37 +196,37 @@ const projects = [
   },
   {
     rank: 5,
-    title: "Spam Tool Kit",
+    title: "E-Commerce Platform (Zara-style)",
     type: "Team" as const,
     oneLiner:
-      "A 4-module web app covering email spam detection (97.2% accuracy), SMS spam detection (99.28% accuracy), text analysis, and plagiarism checking — all in one Flask app.",
+      "A full-stack e-commerce platform with secure checkout, CMS-managed product catalog, and order management — built and shipped by a 3-person team.",
     bullets: [
-      "SMS model: 99.28% accuracy, 100% precision, 97.24% F1-score on held-out test set",
-      "Email model: 97.20% accuracy — accepts .txt and .eml file uploads",
-      "4 modules: Email Spam, SMS Spam, Text Analysis, Plagiarism Detection",
+      "End-to-end system: React frontend, Strapi headless CMS, SQL Server database",
+      "Covers authentication, payment flow, and inventory management",
+      "Deployed to production; currently resolving a post-deployment data-sync issue (documented openly in the repo)",
     ],
     problem:
-      "Build a multi-feature spam detection toolkit that goes beyond a single classifier — a working web app with real file upload, live text input, and structured output (confidence score, probability bars, risk category).",
+      "Build a working online storefront with authentication, payments, and inventory management — not a mockup, a functioning system.",
     contribution:
-      "Owned all technical implementation — model training pipeline, CountVectorizer feature engineering, Flask backend, and the full HTML/CSS/JS web interface across all four modules. Group project for CPSC 483 at Cal State Fullerton.",
+      "Implemented secure user authentication, third-party payment gateway integration, and inventory/order management. Configured and integrated Strapi CMS as the content/data layer connecting to SQL Server, enabling structured content management independent of the codebase. Deployed to Vercel, performed performance optimization to improve load times and scalability, and am currently debugging a post-deployment data-sync issue between the CMS and database layer.",
     tech: [
-      { label: "Python" },
-      { label: "scikit-learn" },
-      { label: "Flask" },
-      { label: "CountVectorizer" },
-      { label: "Naive Bayes" },
-      { label: "pandas" },
-      { label: "HTML / CSS / JS" },
+      { label: "React" },
+      { label: "Strapi" },
+      { label: "SQL Server" },
+      { label: "Payment Gateway API" },
+      { label: "Vercel" },
     ],
     challenges:
-      "Building 4 distinct modules into a single coherent app. Feature engineering for two different text domains — email and SMS have very different language patterns. Making outputs actionable with confidence scores and risk levels rather than just spam/not spam.",
+      "Integrating a headless CMS with a relational database while keeping content editable independently of the codebase. Post-deployment, a data-sync issue emerged between the CMS and the database layer — currently being resolved.",
     solution:
-      "Separate Multinomial Naive Bayes models trained on domain-specific Kaggle datasets (email_spam.csv, sms_spam.csv) with 80/20 splits. CountVectorizer bag-of-words feature extraction. Plagiarism module uses Jaccard similarity. All four modules served through a single Flask app with a tabbed HTML/CSS/JS interface.",
+      "React frontend consuming a Strapi-managed content and product layer, backed by SQL Server, with a dedicated auth and order-management flow. Architecture separates content concerns (Strapi) from transactional data (SQL Server).",
     results:
-      "SMS model: 99.28% accuracy, 100% precision, 94.63% recall, 97.24% F1-score. Email model: 97.20% accuracy. Inference under 1–2ms per message. Training under 1 second.",
+      "Deployed to production on Vercel. A data-sync issue between the CMS and database emerged post-deployment and is actively being debugged — the live demo is currently unreliable, so the architecture diagram is the best way to see the design.",
     demonstrates:
-      "Taking a multi-feature ML system from training to a working, user-facing product — not just the model, but the full pipeline including file handling, live inference, and structured UI output across four different tools.",
-    githubUrl: "https://github.com/finnnguyen/AI-Spam_Detect",
+      "Full-stack ownership across the entire layer cake, cross-functional teamwork, and the ability to debug real production issues — not just classroom code. Also demonstrates transparency: the known issue is documented in the README rather than hidden.",
+    githubUrl: "https://github.com/finnnguyen",
+    demoNote: "Live demo temporarily offline — data-sync issue in progress (see GitHub README).",
+    archDiagram: <EcommerceArchDiagram />,
   },
   {
     rank: 6,
