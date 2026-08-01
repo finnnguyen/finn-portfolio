@@ -1,26 +1,58 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: #FAF9F6;
+  --color-ink: #15181F;
+  --color-navy: #1F3864;
+  --color-navy-hover: #162a4d;
+  --color-teal: #2F6F62;
+  --color-teal-light: #eaf3f1;
+  --color-border: #e2ddd6;
+  --color-muted: #6b6560;
+  --font-heading: var(--font-archivo);
+  --font-body: var(--font-ibm-plex-sans);
+  --font-mono: var(--font-ibm-plex-mono);
+  --animate-fade-up: fadeUp 0.6s ease-out forwards;
+  --animate-fade-up-1: fadeUp 0.6s ease-out 0.15s forwards;
+  --animate-fade-up-2: fadeUp 0.6s ease-out 0.3s forwards;
+  --animate-fade-up-3: fadeUp 0.6s ease-out 0.45s forwards;
+  --animate-fade-up-4: fadeUp 0.6s ease-out 0.6s forwards;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #FAF9F6;
+  color: #15181F;
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid #1F3864;
+  outline-offset: 3px;
+  border-radius: 2px;
 }
