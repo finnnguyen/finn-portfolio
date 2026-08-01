@@ -281,11 +281,30 @@ const skillGroups = [
   },
   {
     category: "Web & Backend",
-    skills: ["React", "Flask", "FastAPI", "Strapi", "Firebase", "Next.js"],
+    skills: [
+      "React",
+      "Flask",
+      "FastAPI",
+      "Strapi",
+      "Firebase",
+      "Next.js",
+      "Supabase",
+      "Zod",
+      "Tailwind CSS",
+    ],
   },
   {
     category: "Tools & Platforms",
-    skills: ["SQL Server", "Git / GitHub", "Vercel", "ffmpeg", "Jupyter Notebook"],
+    skills: [
+      "SQL Server",
+      "Git / GitHub",
+      "GitHub Actions",
+      "Vercel",
+      "Vitest",
+      "Sentry",
+      "ffmpeg",
+      "Jupyter Notebook",
+    ],
   },
 ];
 
