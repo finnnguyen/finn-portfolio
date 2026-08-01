@@ -451,22 +451,6 @@ export default function Home() {
                 EDA across 215,000+ repositories — language trends, star/fork patterns, and AI-repo growth over time.
               </p>
             </li>
-            <li>
-              <div className="flex flex-wrap items-baseline gap-2 mb-0.5">
-                <a
-                  href="https://github.com/finnnguyen"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-body text-sm font-medium text-[#1F3864] underline underline-offset-2 hover:text-[#162a4d]"
-                >
-                  Facial Recognition System
-                </a>
-                <span className="font-mono text-xs text-[#6b6560]">Personal · Python, OpenCV, face_recognition · 2024</span>
-              </div>
-              <p className="font-body text-sm text-[#6b6560]">
-                Computer-vision app for face detection and identification, debugging recognition accuracy across varied input conditions.
-              </p>
-            </li>
           </ul>
         </div>
       </section>
