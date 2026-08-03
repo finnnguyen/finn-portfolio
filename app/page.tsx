@@ -473,7 +473,9 @@ export default function Home() {
         <div className="max-w-2xl space-y-4">
           <p className="font-body text-[#15181F] leading-relaxed">
             I&apos;m a Computer Science graduate (Cal State Fullerton, May 2026) who likes finishing what I
-            start — from a team-built e-commerce platform with real checkout and CMS integration, to
+            start — I&apos;ve taken two production systems (a salon booking platform and a staff rotation
+            engine) all the way from schema design to a live deployment with database-enforced
+            correctness, CI, and real monitoring, and I bring that same finish-it-properly habit to
             machine learning projects that go beyond training a model to actually improving and
             evaluating it.
           </p>
