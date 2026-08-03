@@ -5,10 +5,10 @@ import ProjectCard from "./components/ProjectCard";
 // ─── Architecture diagram for E-Commerce (used in expandable section) ────────
 function EcommerceArchDiagram() {
   const layers = [
-    { label: "React Frontend", note: "UI, routing, state" },
+    { label: "React Frontend", note: "MUI, Redux Toolkit" },
     { label: "Strapi CMS", note: "Content & product layer" },
-    { label: "SQL Server", note: "Orders, auth, inventory" },
-    { label: "Payment Gateway API", note: "Checkout processing" },
+    { label: "MySQL", note: "Orders, auth, inventory" },
+    { label: "Stripe", note: "Checkout processing" },
   ];
   return (
     <div className="flex flex-col gap-0 items-start w-full max-w-sm">
@@ -37,6 +37,35 @@ function SalonArchDiagram() {
     { label: "Postgres RLS + Rate Limiting", note: "Auth-scoped policies, SECURITY DEFINER functions" },
     { label: "Supabase (Postgres, Auth)", note: "EXCLUDE constraint prevents double-booking" },
     { label: "Sentry + GitHub Actions CI", note: "Error tracking, lint/typecheck/test/build gate" },
+  ];
+  return (
+    <div className="flex flex-col gap-0 items-start w-full max-w-sm">
+      {layers.map((layer, i) => (
+        <div key={layer.label} className="flex flex-col items-start">
+          <div className="flex items-center gap-3">
+            <div className="w-2 h-2 rounded-full bg-[#1F3864]/50 shrink-0" />
+            <div>
+              <span className="font-mono text-xs text-[#1F3864] font-medium">{layer.label}</span>
+              <span className="font-mono text-xs text-[#6b6560] ml-2">— {layer.note}</span>
+            </div>
+          </div>
+          {i < layers.length - 1 && (
+            <div className="ml-[3.5px] h-5 w-px border-l border-dashed border-[#1F3864]/30" />
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ─── Architecture diagram for Turn Rotation (used in expandable section) ────
+function TurnRotationArchDiagram() {
+  const layers = [
+    { label: "Next.js (App Router)", note: "Server Actions, instrumentation hooks" },
+    { label: "Atomic Postgres functions", note: "Rotation fairness, optimistic concurrency" },
+    { label: "Supabase (Postgres, RLS, Auth, Realtime)", note: "Partial unique indexes prevent double-booking staff" },
+    { label: "AWS Amplify + Amazon Textract", note: "Manager-reviewed menu import" },
+    { label: "Sentry + GitHub Actions CI", note: "Source-mapped error tracking, integration tests against real Postgres" },
   ];
   return (
     <div className="flex flex-col gap-0 items-start w-full max-w-sm">
@@ -99,6 +128,43 @@ const projects = [
   },
   {
     rank: 2,
+    title: "Turn Rotation — Salon Staff Rotation & Fairness Engine",
+    type: "Personal" as const,
+    oneLiner:
+      "A concurrency-safe salon operations platform that manages a live employee rotation queue — atomic Postgres functions guarantee fairness under concurrent requests, Row Level Security enforces authorization, and AWS Textract turns an uploaded price list into manager-reviewed catalog drafts.",
+    bullets: [
+      "Rotation fairness enforced inside atomic Postgres functions with optimistic concurrency — not application-level checks a race condition could slip past",
+      "Real behavioral integration tests exercise the actual RPC path against local Postgres, verified via mutation testing; CI spins up Supabase in Docker to run them on every push",
+      "AWS Amplify deployment with Amazon Textract-assisted menu import — nothing publishes to the catalog without manager review",
+    ],
+    problem:
+      "Salon managers needed to run a fair, auditable walk-in queue across two independent rotations (a shared dollar rotation and a shared haircut rotation) without losing arrival order, qualifications, or partial credit — and staff needed to actually understand why they were or weren't assigned a customer.",
+    contribution:
+      "Entire project — schema design, the transactional rotation/assignment engine, the manager and staff dashboards, AWS Textract-assisted menu import with a mandatory human-review gate, and a full production-hardening pass: Sentry error tracking through Next.js instrumentation hooks, CI-gated accessibility scans, and behavioral integration tests against real Postgres, each verified against the real deployed app.",
+    tech: [
+      { label: "Next.js" },
+      { label: "Supabase (Postgres, RLS, Auth, Realtime)" },
+      { label: "AWS Amplify" },
+      { label: "Amazon Textract" },
+      { label: "Sentry" },
+      { label: "Vitest" },
+      { label: "Playwright / axe-core" },
+      { label: "GitHub Actions" },
+    ],
+    challenges:
+      "Guaranteeing fairness under concurrency — two managers confirming assignments on different devices at the same moment can't be allowed to corrupt the shared queue. Solved with atomic Postgres functions, optimistic concurrency via state versions, and partial unique indexes that make double-booking an employee a database constraint violation rather than a bug to catch in review. Also caught and fixed a real deployment bug during a Sentry integration pass: Next.js resolves instrumentation.ts and middleware.ts relative to the app directory, not the repo root, so both files were silently never running in production until moved.",
+    solution:
+      "Fairness rules — dollar/haircut balance tracking, master and haircut rotation position changes, $30 full-turn completion — all live inside atomic Postgres functions (lock_and_increment_rotation, start_visit_services) rather than application code. Every state-changing RPC takes an expected state version and rejects stale writes. Row Level Security policies, not route-handler checks, enforce manager vs. staff access. AWS Textract extracts services from an uploaded price list into review-only drafts; nothing publishes without manager confirmation. CI runs lint/typecheck/unit tests/build on every push, plus a dedicated job that spins up local Supabase in Docker to lint the schema and run real integration tests against Postgres, plus a Playwright/axe-core accessibility scan.",
+    results:
+      "Deployed and verified end-to-end on AWS Amplify: the production smoke test covered manager auth, workday/rotation operations, and the full private menu-upload flow — Textract detected 51 lines from a sample price list and created 41 editable drafts, none auto-published. Verified the integration test suite catches real regressions via mutation testing (deliberately broke the rotation logic, confirmed the test failed, reverted), and verified Sentry reaches production by forcing a real error and confirming it landed in the dashboard with resolved source maps.",
+    demonstrates:
+      "The same production bar as 79 Nails & Hair, applied to a more concurrency-sensitive domain: correctness enforced at the database layer, an AI-assisted feature with a mandatory human gate rather than blind automation, and the habit of verifying claims against the real deployed system — which is exactly how a real bug (silently broken auth middleware) got caught before it mattered instead of after.",
+    githubUrl: "https://github.com/finnnguyen/turn-rotation",
+    demoUrl: "https://main.d1fp0wl4mlqx0q.amplifyapp.com",
+    archDiagram: <TurnRotationArchDiagram />,
+  },
+  {
+    rank: 3,
     title: "Spam Tool Kit",
     type: "Team" as const,
     oneLiner:
@@ -132,7 +198,7 @@ const projects = [
     githubUrl: "https://github.com/finnnguyen/AI-Spam_Detect",
   },
   {
-    rank: 3,
+    rank: 4,
     title: "Supervised Learning — House Price & Disease Prediction",
     type: "Personal" as const,
     oneLiner:
@@ -162,7 +228,7 @@ const projects = [
     githubUrl: "https://github.com/finnnguyen",
   },
   {
-    rank: 4,
+    rank: 5,
     title: "DataChat — Natural Language CSV Queries",
     type: "Personal" as const,
     oneLiner:
@@ -195,41 +261,44 @@ const projects = [
     githubUrl: "https://github.com/finnnguyen/datachat",
   },
   {
-    rank: 5,
+    rank: 6,
     title: "E-Commerce Platform (Zara-style)",
     type: "Team" as const,
     oneLiner:
-      "A full-stack e-commerce platform with secure checkout, CMS-managed product catalog, and order management — built and shipped by a 3-person team.",
+      "A full-stack e-commerce platform with Stripe checkout, CMS-managed product catalog, and order management — built and shipped by a 3-person team.",
     bullets: [
-      "End-to-end system: React frontend, Strapi headless CMS, SQL Server database",
-      "Covers authentication, payment flow, and inventory management",
+      "End-to-end system: React (Redux Toolkit, Material UI) frontend, Strapi headless CMS, MySQL database",
+      "Covers authentication, Stripe checkout, and inventory/order management, with Jest + Supertest backend tests",
       "Deployed to production; currently resolving a post-deployment data-sync issue (documented openly in the repo)",
     ],
     problem:
       "Build a working online storefront with authentication, payments, and inventory management — not a mockup, a functioning system.",
     contribution:
-      "Implemented secure user authentication, third-party payment gateway integration, and inventory/order management. Configured and integrated Strapi CMS as the content/data layer connecting to SQL Server, enabling structured content management independent of the codebase. Deployed to Vercel, performed performance optimization to improve load times and scalability, and am currently debugging a post-deployment data-sync issue between the CMS and database layer.",
+      "Implemented secure user authentication, Stripe payment integration, and inventory/order management, with Jest + Supertest coverage on the order-management API. Configured and integrated Strapi CMS as the content/data layer connecting to MySQL, enabling structured content management independent of the codebase. Deployed to Vercel, performed performance optimization to improve load times and scalability, and am currently debugging a post-deployment data-sync issue between the CMS and database layer.",
     tech: [
       { label: "React" },
+      { label: "Redux Toolkit" },
+      { label: "Material UI" },
       { label: "Strapi" },
-      { label: "SQL Server" },
-      { label: "Payment Gateway API" },
+      { label: "MySQL" },
+      { label: "Stripe" },
+      { label: "Jest" },
       { label: "Vercel" },
     ],
     challenges:
       "Integrating a headless CMS with a relational database while keeping content editable independently of the codebase. Post-deployment, a data-sync issue emerged between the CMS and the database layer — currently being resolved.",
     solution:
-      "React frontend consuming a Strapi-managed content and product layer, backed by SQL Server, with a dedicated auth and order-management flow. Architecture separates content concerns (Strapi) from transactional data (SQL Server).",
+      "React frontend (Redux Toolkit for state, Material UI for components) consuming a Strapi-managed content and product layer, backed by MySQL, with a dedicated auth and order-management flow. Architecture separates content concerns (Strapi) from transactional data (MySQL).",
     results:
       "Deployed to production on Vercel. A data-sync issue between the CMS and database emerged post-deployment and is actively being debugged — the live demo is currently unreliable, so the architecture diagram is the best way to see the design.",
     demonstrates:
       "Full-stack ownership across the entire layer cake, cross-functional teamwork, and the ability to debug real production issues — not just classroom code. Also demonstrates transparency: the known issue is documented in the README rather than hidden.",
-    githubUrl: "https://github.com/finnnguyen",
+    githubUrl: "https://github.com/br-zee/362-final-project",
     demoNote: "Live demo temporarily offline — data-sync issue in progress (see GitHub README).",
     archDiagram: <EcommerceArchDiagram />,
   },
   {
-    rank: 6,
+    rank: 7,
     title: "Deep Learning Image Classification",
     type: "Personal" as const,
     oneLiner:
@@ -283,25 +352,32 @@ const skillGroups = [
     category: "Web & Backend",
     skills: [
       "React",
+      "Redux Toolkit",
+      "Material UI",
       "Flask",
       "FastAPI",
       "Strapi",
-      "Firebase",
       "Next.js",
       "Supabase",
       "Zod",
       "Tailwind CSS",
+      "Vite",
     ],
   },
   {
     category: "Tools & Platforms",
     skills: [
-      "SQL Server",
+      "MySQL",
       "Git / GitHub",
       "GitHub Actions",
       "Vercel",
+      "AWS Amplify",
+      "Amazon Textract",
       "Vitest",
+      "Playwright",
+      "Jest",
       "Sentry",
+      "Stripe",
       "ffmpeg",
       "Jupyter Notebook",
     ],
@@ -437,23 +513,6 @@ export default function Home() {
             Also on GitHub
           </h3>
           <ul className="space-y-4">
-            <li>
-              <div className="flex flex-wrap items-baseline gap-2 mb-0.5">
-                <a
-                  href="https://github.com/finnnguyen"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-body text-sm font-medium text-[#1F3864] underline underline-offset-2 hover:text-[#162a4d]"
-                >
-                  Music Mixer Platform
-                </a>
-                <span className="font-mono text-xs text-[#6b6560]">Team · React, FastAPI, Firebase, Demucs · 2025</span>
-              </div>
-              <p className="font-body text-sm text-[#6b6560]">
-                Full-stack music-remixing app with AI-powered vocal/instrument separation (Demucs),
-                Deezer API catalog search, and Firebase authentication — three external services integrated into one working product.
-              </p>
-            </li>
             <li>
               <div className="flex flex-wrap items-baseline gap-2 mb-0.5">
                 <a
