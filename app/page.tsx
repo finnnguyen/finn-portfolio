@@ -370,6 +370,7 @@ const skillGroups = [
       "MySQL",
       "Git / GitHub",
       "GitHub Actions",
+      "Docker",
       "Vercel",
       "AWS Amplify",
       "Amazon Textract",
