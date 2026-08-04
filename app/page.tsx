@@ -94,19 +94,21 @@ const projects = [
     title: "79 Nails & Hair — Production Booking Platform",
     type: "Personal" as const,
     oneLiner:
-      "A live booking platform for the salon I work at — real-time availability, a staff admin console, and a full production-engineering pass most portfolio projects skip: database-enforced correctness, Row Level Security, CI, input validation, rate limiting, and error tracking, all verified against the real deployment.",
+      "A live booking platform for the salon I work at — real-time availability, a staff admin console, an AI-powered natural-language service search, and a full production-engineering pass most portfolio projects skip: database-enforced correctness, Row Level Security, CI, input validation, rate limiting, and error tracking, all verified against the real deployment.",
     bullets: [
       "No-double-booking guaranteed at the database level via a Postgres exclusion constraint — not an app-level check that a race condition could slip past",
       "Full hardening pass: RLS on every table, CI (lint/typecheck/test/build) on every push, Zod-validated Server Actions, rate limiting, and Sentry error tracking",
       "Schema fully version-controlled across 18 tracked migrations; found and fixed a real stored-HTML-injection bug in outbound emails along the way",
+      "Added a Claude-powered natural-language service search — customers describe what they want in plain English, and every returned match is re-validated against the real catalog before it reaches a customer, so a hallucinated service can never be shown",
     ],
     problem:
       "The salon needed real online booking — not a mockup — with the non-negotiables any production booking system has: no double-booked stylists, no exposed customer data, and no silent failures once it's live.",
     contribution:
-      "Entire project — schema design, the booking wizard and staff admin console (live rotation queue, walk-in check-in, review moderation), and a full pass of production-hardening work: tracked database migrations, CI, input validation at the Server Action trust boundary, rate limiting, and error tracking, each verified against the real deployed app rather than assumed to work.",
+      "Entire project — schema design, the booking wizard and staff admin console (live rotation queue, walk-in check-in, review moderation), an AI-powered natural-language service search, and a full pass of production-hardening work: tracked database migrations, CI, input validation at the Server Action trust boundary, rate limiting, and error tracking, each verified against the real deployed app rather than assumed to work.",
     tech: [
       { label: "Next.js 16" },
       { label: "Supabase (Postgres, RLS, Auth)" },
+      { label: "Anthropic Claude API" },
       { label: "Zod" },
       { label: "Vitest" },
       { label: "Sentry" },
@@ -115,13 +117,13 @@ const projects = [
       { label: "Vercel" },
     ],
     challenges:
-      "Most course/tutorial projects stop at 'it works on my machine.' The real work was guaranteeing no-double-booking under concurrent requests (solved at the database level, not in application code), designing an authorization model where every table's access rules are enforced by Postgres itself rather than scattered route-handler checks, and catching a real stored-HTML-injection vulnerability in outbound confirmation emails before it shipped.",
+      "Most course/tutorial projects stop at 'it works on my machine.' The real work was guaranteeing no-double-booking under concurrent requests (solved at the database level, not in application code), designing an authorization model where every table's access rules are enforced by Postgres itself rather than scattered route-handler checks, catching a real stored-HTML-injection vulnerability in outbound confirmation emails before it shipped, and making an AI feature trustworthy rather than just impressive in a demo — the model routinely wrapped its JSON in a markdown fence despite instructions not to, and returned far more loosely-relevant matches than useful, both caught and fixed during testing.",
     solution:
-      "Booking correctness is enforced by a Postgres EXCLUDE constraint on a computed time-range column, so a race condition cannot double-book a stylist. Every table has Row Level Security policies scoped to public vs. authenticated roles. Server Actions validate input with Zod before touching the database. A SECURITY DEFINER Postgres function rate-limits the two public write endpoints. Sentry is wired through error boundaries and Next.js instrumentation hooks for real production visibility. All 18 schema migrations are tracked in version control, and CI gates every push to main.",
+      "Booking correctness is enforced by a Postgres EXCLUDE constraint on a computed time-range column, so a race condition cannot double-book a stylist. Every table has Row Level Security policies scoped to public vs. authenticated roles. Server Actions validate input with Zod before touching the database. A SECURITY DEFINER Postgres function rate-limits the two public write endpoints. Sentry is wired through error boundaries and Next.js instrumentation hooks for real production visibility. All 18 schema migrations are tracked in version control, and CI gates every push to main. The natural-language search sends the real service catalog to Claude and asks it to select from real ids only — the response is then re-validated in code against that same catalog, so any hallucinated or malformed id is silently dropped before a customer ever sees it, and the UI falls back to normal category browsing if the model call fails.",
     results:
-      "Live and used for real bookings at the salon. CI green on every push. Verified end-to-end in production, not just locally: deployed a forced error to a live preview and confirmed it landed in Sentry before calling the work done, and mutation-tested the unit test suite — deliberately broke the underlying logic, confirmed the tests failed, then reverted — rather than shipping tests that just pass trivially.",
+      "Live and used for real bookings at the salon. CI green on every push. Verified end-to-end in production, not just locally: deployed a forced error to a live preview and confirmed it landed in Sentry before calling the work done, mutation-tested the unit test suite — deliberately broke the underlying logic, confirmed the tests failed, then reverted — and tested the AI search against the real deployed API key, confirming both a correct multi-match result and a clean empty result for a nonsense query.",
     demonstrates:
-      "The difference between a project that works and one that's actually production-ready: correctness enforced at the right layer, security modeled as data-access rules instead of scattered checks, and a habit of verifying claims against the real system rather than trusting that a local run or a passing test means the work is finished.",
+      "The difference between a project that works and one that's actually production-ready: correctness enforced at the right layer, security modeled as data-access rules instead of scattered checks, and a habit of verifying claims against the real system rather than trusting that a local run or a passing test means the work is finished. The AI search extends that same discipline to LLM features — grounded in real data, defended against hallucination in code rather than trusted blindly, and designed to degrade gracefully rather than break the page when the model call fails.",
     githubUrl: "https://github.com/finnnguyen/79-nails-and-hair-website",
     demoUrl: "https://79nailsandhair.vercel.app",
     archDiagram: <SalonArchDiagram />,
@@ -346,6 +348,8 @@ const skillGroups = [
       "Matplotlib",
       "OpenCV",
       "CountVectorizer / NLP",
+      "Anthropic Claude API",
+      "OpenAI GPT-4o-mini",
     ],
   },
   {
