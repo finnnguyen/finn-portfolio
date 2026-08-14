@@ -390,6 +390,14 @@ const skillGroups = [
       "Jupyter Notebook",
     ],
   },
+  {
+    category: "Process",
+    skills: [
+      "Agile Unified Process (UP)",
+      "Iterative Development (Inception–Transition)",
+      "Team-Based Software Process",
+    ],
+  },
 ];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
