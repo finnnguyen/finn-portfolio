@@ -646,9 +646,11 @@ export default function Home() {
             79 Nails and Hair &middot; Promoted from Assistant Manager (2023 – Aug 2026)
           </p>
           <p className="font-body text-sm text-[#15181F] leading-relaxed">
-            Manage daily operations, staff scheduling, and customer service for a high-traffic
-            business — the same prioritization and communication skills that carry into how I scope
-            and ship technical work.
+            Own full daily operations for a high-traffic salon end-to-end — staff rotation, cash
+            flow, customer complaints, staff supervision, and healthcare-grade cleanliness
+            standards — trusted to operate independently, reporting to the owner only 2–3x/week
+            since promotion from Assistant Manager. The same prioritization and communication
+            skills carry into how I scope and ship technical work.
           </p>
         </div>
       </section>
