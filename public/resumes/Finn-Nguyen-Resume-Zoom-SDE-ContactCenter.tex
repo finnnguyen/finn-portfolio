@@ -1,0 +1,179 @@
+%-------------------------
+% Resume in LaTeX
+% Base template for: Finn Nguyen
+% Template source: https://github.com/jakegut/resume (based on sb2nov/resume)
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generated pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Finn Nguyen} \\ \vspace{1pt}
+    \small (657) 384-3101 $|$ \href{mailto:Finnnguyen93@gmail.com}{\underline{Finnnguyen93@gmail.com}} $|$
+    \href{https://linkedin.com/in/finn-nguyen}{\underline{linkedin.com/in/finn-nguyen}} $|$
+    \href{https://github.com/finnnguyen}{\underline{github.com/finnnguyen}} $|$
+    \href{https://finn-portfolio-phi.vercel.app/}{\underline{finn-portfolio-phi.vercel.app}}
+\end{center}
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {California State University, Fullerton}{Fullerton, CA}
+      {B.S. in Computer Science}{May 2026}
+      \resumeItemListStart
+        \resumeItem{Dean's Honor List: Fall 2025, Spring 2026}
+        \resumeItem{Relevant Coursework: Data Structures, Algorithms Engineering, Software Engineering, Machine Learning, Applied AI, Artificial Intelligence, System Design, Operating Concepts}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Manager}{Aug. 2026 -- Present}
+      {79 Nails and Hair}{Garden Grove, CA}
+      \resumeItemListStart
+        \resumeItem{Owns full daily operations for a high-traffic salon end-to-end -- staff rotation, cash flow, customer complaints, staff supervision, and healthcare-grade cleanliness standards -- trusted to operate independently, reporting to the owner only 2--3x/week since promotion from Assistant Manager}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Assistant Manager}{2023 -- Aug. 2026}
+      {79 Nails and Hair}{Garden Grove, CA}
+      \resumeItemListStart
+        \resumeItem{Managed daily operations, staff scheduling, and customer service for 3 years, earning promotion to Manager through consistently reliable execution under pressure}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{DataChat -- Natural Language CSV Queries} $|$ \emph{Python, OpenAI GPT-4o-mini, SQLite, pandas}}{2026}
+          \resumeItemListStart
+            \resumeItem{Built task execution logic and error handling for an AI-driven data flow: a two-LLM-call pipeline that converts natural language questions into SQL, executes them, and explains results in plain English}
+            \resumeItem{Added a self-correction feedback loop that feeds SQL execution errors back into the model, automatically resolving failed queries without manual intervention}
+            \resumeItem{Developed and evaluated prompts across 3 iterations against a labeled evaluation framework, improving accuracy from 66.7\% to 100\% on 12 test cases}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{79 Nails \& Hair Booking Platform} $|$ \emph{Next.js, PostgreSQL, Claude API, Docker}}{2026}
+          \resumeItemListStart
+            \resumeItem{Implemented backend services powering an LLM-driven natural-language search, with every AI-returned result re-validated against the live database before reaching a user to guarantee correctness}
+            \resumeItem{Built a real-time booking platform for a real business, guaranteeing no double-booking at the database level via a Postgres exclusion constraint, not an app-level check a race condition could slip past}
+            \resumeItem{Instrumented the platform with Sentry error monitoring and CI (lint, typecheck, test, build) gating every deploy, tracking correctness across testing and production}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Turn Rotation -- Staff Fairness Engine} $|$ \emph{PostgreSQL, AWS Amplify, Textract}}{2026}
+          \resumeItemListStart
+            \resumeItem{Engineered a concurrency-safe rotation engine using atomic PostgreSQL functions and optimistic concurrency}
+            \resumeItem{Resolved a production issue through root cause analysis: manually validated \textasciitilde350 real assignments, traced a 2\% error rate to two real bugs, reproduced each with a failing test, and shipped fixes the same day}
+            \resumeItem{Set up CI running PostgreSQL in Docker for 53 automated tests on every push}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Python, JavaScript/TypeScript, SQL, C++, C\#} \\
+     \textbf{Frameworks}{: Next.js, React, FastAPI, Flask, Strapi, Anthropic Claude API, OpenAI GPT-4o-mini} \\
+     \textbf{Databases}{: PostgreSQL (Supabase, Row Level Security), MySQL, SQL Server} \\
+     \textbf{Developer Tools}{: Git, GitHub Actions (CI/CD), Docker, Vitest, Sentry, Zod, Vercel, VS Code, AWS Amplify}
+    }}
+ \end{itemize}
+
+
+%-------------------------------------------
+\end{document}
