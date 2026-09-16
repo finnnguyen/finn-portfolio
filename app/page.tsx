@@ -638,11 +638,13 @@ export default function Home() {
         <div className="max-w-2xl">
           <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-3">
             <h3 className="font-heading font-semibold text-[#15181F]">
-              Assistant Manager
+              Manager
             </h3>
-            <span className="font-mono text-xs text-[#6b6560]">2023 – Present</span>
+            <span className="font-mono text-xs text-[#6b6560]">Aug 2026 – Present</span>
           </div>
-          <p className="font-body text-sm text-[#6b6560] mb-2">79 Nails and Hair</p>
+          <p className="font-body text-sm text-[#6b6560] mb-2">
+            79 Nails and Hair &middot; Promoted from Assistant Manager (2023 – Aug 2026)
+          </p>
           <p className="font-body text-sm text-[#15181F] leading-relaxed">
             Manage daily operations, staff scheduling, and customer service for a high-traffic
             business — the same prioritization and communication skills that carry into how I scope
