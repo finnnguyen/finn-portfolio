@@ -499,7 +499,7 @@ export default function Home() {
             Before this, I spent two-plus years managing daily operations and customer service for a
             busy local business, which is where I actually learned to prioritize under pressure and
             communicate clearly — skills that show up in how I work now. This fall, I&apos;ll be joining
-            a faculty-sponsored AI project building a real system for a local organization.
+            a faculty-sponsored AI project, building a real system for a commercial real estate firm.
           </p>
         </div>
       </section>
@@ -570,26 +570,26 @@ export default function Home() {
               Faculty-Sponsored Applied AI Project
             </h3>
             <span className="font-mono text-xs px-2 py-0.5 rounded-full border border-[#1F3864]/30 text-[#1F3864] bg-[#1F3864]/5">
-              Starting Fall 2026
+              Fall 2026 &middot; Client Confirmed
             </span>
           </div>
 
           <p className="font-body text-[#15181F] text-sm leading-relaxed mb-3">
             Selected by a professor from my AI coursework to join a small team delivering a
-            production AI system, pro bono, for a local organization (city government, university
-            department, or local business — TBD). Over a 10-week build, I&apos;ll take ownership of
-            ingestion pipelines, evaluation tooling, UI, and documentation, working under a senior
-            engineer&apos;s review before anything ships.
+            production AI system, pro bono, for a client the faculty sponsor sourced: a Senior VP
+            at Colliers, one of the world&apos;s largest commercial real estate firms, who specializes
+            in strategic real estate solutions for corporations and business owners and is looking
+            to bring AI into that practice.
           </p>
 
           <p className="font-body text-[#15181F] text-sm leading-relaxed mb-4">
-            Unlike a class project, this will be a real system used by a real client, with recurring
-            check-ins and a milestone demo.
+            Unlike a class project, this will be a real system scoped directly with the client,
+            with recurring check-ins on Zoom and in person over the course of the semester.
           </p>
 
           <p className="font-body text-xs text-[#6b6560] italic">
-            This engagement begins in September 2026 — details below reflect the current plan and
-            will be updated once the project is underway.
+            Kickoff and scoping meetings are being scheduled for late September 2026 — details
+            below will be updated once the project scope is finalized.
           </p>
         </article>
       </section>
