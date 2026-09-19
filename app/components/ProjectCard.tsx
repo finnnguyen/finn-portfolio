@@ -12,11 +12,18 @@ interface Media {
   alt: string;
 }
 
+interface TryItYourself {
+  url: string;
+  email: string;
+  password: string;
+}
+
 interface ProjectCardProps {
   rank: number;
   title: string;
   type: "Team" | "Personal";
   media?: Media;
+  tryItYourself?: TryItYourself;
   oneLiner: string;
   bullets: string[];
   problem: string;
@@ -88,6 +95,7 @@ export default function ProjectCard({
   title,
   type,
   media,
+  tryItYourself,
   oneLiner,
   bullets,
   problem,
@@ -185,6 +193,30 @@ export default function ProjectCard({
 
         {demoNote && (
           <p className="font-body text-xs text-muted italic mb-4">{demoNote}</p>
+        )}
+
+        {tryItYourself && (
+          <div className="rounded-xl border border-accent/25 bg-accent-soft p-4 mb-4">
+            <p className="font-mono text-[11px] text-accent uppercase tracking-wider font-medium mb-2">
+              Try it yourself — live manager login
+            </p>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-xs text-ink mb-3">
+              <span>
+                <span className="text-muted">Email:</span> {tryItYourself.email}
+              </span>
+              <span>
+                <span className="text-muted">Password:</span> {tryItYourself.password}
+              </span>
+            </div>
+            <a
+              href={tryItYourself.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 font-body text-sm font-medium px-4 py-2 rounded-full bg-accent text-white hover:bg-accent-hover transition-colors"
+            >
+              Open live manager dashboard <ExternalLinkIcon />
+            </a>
+          </div>
         )}
 
         {/* Tech tags */}

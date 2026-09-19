@@ -155,7 +155,12 @@ const projects = [
     media: {
       type: "gif" as const,
       src: "/projects/turn-rotation/demo.gif",
-      alt: "Turn Rotation landing page and the manager sign-in gate — the staff dashboard itself requires a manager account",
+      alt: "Walkthrough of the real Turn Rotation manager dashboard — live rotation queue, fairness corrections, and staff/service management",
+    },
+    tryItYourself: {
+      url: "https://main.d1fp0wl4mlqx0q.amplifyapp.com/login",
+      email: "recruiter-demo@turnrotation.dev",
+      password: "TurnRotationDemo2026!",
     },
     oneLiner:
       "A concurrency-safe salon operations platform that manages a live employee rotation queue — atomic Postgres functions guarantee fairness under concurrent requests, Row Level Security enforces authorization, and AWS Textract turns an uploaded price list into manager-reviewed catalog drafts.",
