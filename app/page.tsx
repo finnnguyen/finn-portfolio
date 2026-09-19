@@ -1,6 +1,20 @@
 import Nav from "./components/Nav";
 import PipelineDiagram from "./components/PipelineDiagram";
 import ProjectCard from "./components/ProjectCard";
+import SectionHeader from "./components/SectionHeader";
+import {
+  UserIcon,
+  FolderIcon,
+  RocketIcon,
+  CodeIcon,
+  BriefcaseIcon,
+  CapIcon,
+  MailIcon,
+  GithubIcon,
+  LinkedinIcon,
+  ArrowDownIcon,
+  CheckIcon,
+} from "./components/Icons";
 
 // ─── Architecture diagram for E-Commerce (used in expandable section) ────────
 function EcommerceArchDiagram() {
@@ -15,14 +29,14 @@ function EcommerceArchDiagram() {
       {layers.map((layer, i) => (
         <div key={layer.label} className="flex flex-col items-start">
           <div className="flex items-center gap-3">
-            <div className="w-2 h-2 rounded-full bg-[#1F3864]/50 shrink-0" />
+            <div className="w-2 h-2 rounded-full bg-accent/50 shrink-0" />
             <div>
-              <span className="font-mono text-xs text-[#1F3864] font-medium">{layer.label}</span>
-              <span className="font-mono text-xs text-[#6b6560] ml-2">— {layer.note}</span>
+              <span className="font-mono text-xs text-accent font-medium">{layer.label}</span>
+              <span className="font-mono text-xs text-muted ml-2">— {layer.note}</span>
             </div>
           </div>
           {i < layers.length - 1 && (
-            <div className="ml-[3.5px] h-5 w-px border-l border-dashed border-[#1F3864]/30" />
+            <div className="ml-[3.5px] h-5 w-px border-l border-dashed border-accent/30" />
           )}
         </div>
       ))}
@@ -43,14 +57,14 @@ function SalonArchDiagram() {
       {layers.map((layer, i) => (
         <div key={layer.label} className="flex flex-col items-start">
           <div className="flex items-center gap-3">
-            <div className="w-2 h-2 rounded-full bg-[#1F3864]/50 shrink-0" />
+            <div className="w-2 h-2 rounded-full bg-accent/50 shrink-0" />
             <div>
-              <span className="font-mono text-xs text-[#1F3864] font-medium">{layer.label}</span>
-              <span className="font-mono text-xs text-[#6b6560] ml-2">— {layer.note}</span>
+              <span className="font-mono text-xs text-accent font-medium">{layer.label}</span>
+              <span className="font-mono text-xs text-muted ml-2">— {layer.note}</span>
             </div>
           </div>
           {i < layers.length - 1 && (
-            <div className="ml-[3.5px] h-5 w-px border-l border-dashed border-[#1F3864]/30" />
+            <div className="ml-[3.5px] h-5 w-px border-l border-dashed border-accent/30" />
           )}
         </div>
       ))}
@@ -72,14 +86,14 @@ function TurnRotationArchDiagram() {
       {layers.map((layer, i) => (
         <div key={layer.label} className="flex flex-col items-start">
           <div className="flex items-center gap-3">
-            <div className="w-2 h-2 rounded-full bg-[#1F3864]/50 shrink-0" />
+            <div className="w-2 h-2 rounded-full bg-accent/50 shrink-0" />
             <div>
-              <span className="font-mono text-xs text-[#1F3864] font-medium">{layer.label}</span>
-              <span className="font-mono text-xs text-[#6b6560] ml-2">— {layer.note}</span>
+              <span className="font-mono text-xs text-accent font-medium">{layer.label}</span>
+              <span className="font-mono text-xs text-muted ml-2">— {layer.note}</span>
             </div>
           </div>
           {i < layers.length - 1 && (
-            <div className="ml-[3.5px] h-5 w-px border-l border-dashed border-[#1F3864]/30" />
+            <div className="ml-[3.5px] h-5 w-px border-l border-dashed border-accent/30" />
           )}
         </div>
       ))}
@@ -400,94 +414,186 @@ const skillGroups = [
   },
 ];
 
+const coursework = [
+  "Data Structures",
+  "Algorithms Engineering",
+  "Software Engineering",
+  "Machine Learning",
+  "Applied AI",
+  "Artificial Intelligence",
+  "System Design",
+  "Operating Concepts",
+];
+
+const experienceTags = ["Operations", "Staff Management", "Customer Service", "Process Ownership"];
+
+const resumeDownloads = [
+  { label: "Software Engineer", file: "Finn-Nguyen-Resume-Software-Engineer.docx" },
+  { label: "Application Engineer", file: "Finn-Nguyen-Resume-Application-Engineer.docx" },
+  { label: "AI / ML Engineer", file: "Finn-Nguyen-Resume-AI-ML-Engineer.docx" },
+  { label: "Data Analyst", file: "Finn-Nguyen-Resume-Data-Analyst.docx" },
+  { label: "Support Engineer", file: "Finn-Nguyen-Resume-Support-Engineer.docx" },
+  { label: "Technical Support", file: "Finn-Nguyen-Resume-Technical-Support.docx" },
+];
+
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#FAF9F6] text-[#15181F]">
+    <div className="min-h-screen bg-bg text-ink">
       <Nav />
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section
         id="top"
-        className="min-h-screen flex flex-col justify-center px-6 pt-20 pb-16 max-w-5xl mx-auto"
+        className="min-h-screen flex flex-col justify-center px-6 pt-24 pb-16 max-w-5xl mx-auto"
         aria-label="Introduction"
       >
-        <div className="max-w-2xl">
-          {/* Pipeline diagram */}
-          <div
-            className="mb-10 opacity-0 animate-[fadeUp_0.6s_ease-out_forwards]"
-            style={{ animationDelay: "0ms" }}
-          >
-            <PipelineDiagram />
+        <div className="grid lg:grid-cols-[1fr_auto] gap-14 items-center">
+          <div className="max-w-2xl">
+            {/* Pills */}
+            <div
+              className="flex flex-wrap gap-2 mb-6 opacity-0 animate-[fadeUp_0.6s_ease-out_forwards]"
+            >
+              <span className="font-mono text-xs px-3 py-1 rounded-full border border-accent/30 bg-accent-soft text-accent">
+                Software Engineer
+              </span>
+              <span className="font-mono text-xs px-3 py-1 rounded-full border border-border text-muted">
+                Fullerton, CA
+              </span>
+            </div>
+
+            <p
+              className="font-mono text-xs tracking-[0.2em] text-muted uppercase mb-3 opacity-0 animate-[fadeUp_0.6s_ease-out_0.1s_forwards]"
+            >
+              Hello, I&apos;m
+            </p>
+
+            <h1
+              className="font-heading font-bold text-4xl sm:text-5xl md:text-6xl text-ink leading-tight tracking-tight mb-4 opacity-0 animate-[fadeUp_0.6s_ease-out_0.2s_forwards]"
+            >
+              Finn Nguyen<span className="text-accent">.</span>
+            </h1>
+
+            <p
+              className="font-heading font-medium text-xl sm:text-2xl text-accent mb-4 leading-snug opacity-0 animate-[fadeUp_0.6s_ease-out_0.3s_forwards]"
+            >
+              Building full-stack and AI-powered applications
+            </p>
+
+            <p
+              className="font-body text-base sm:text-lg text-muted mb-8 leading-relaxed max-w-xl opacity-0 animate-[fadeUp_0.6s_ease-out_0.4s_forwards]"
+            >
+              Focused on end-to-end delivery — from data pipelines and model evaluation to
+              shipped, deployed products.
+            </p>
+
+            {/* CTAs */}
+            <div
+              className="flex flex-wrap gap-3 mb-6 opacity-0 animate-[fadeUp_0.6s_ease-out_0.5s_forwards]"
+            >
+              <a
+                href="/resumes/Finn-Nguyen-Resume-Software-Engineer.docx"
+                download
+                className="font-body text-sm font-medium px-5 py-2.5 rounded-full bg-gradient-to-r from-accent to-accent-strong text-white shadow-sm hover:shadow-lg hover:brightness-105 transition-all"
+              >
+                Download Resume
+              </a>
+              <a
+                href="#projects"
+                className="font-body text-sm font-medium px-5 py-2.5 rounded-full border border-border text-ink hover:border-accent hover:text-accent transition-colors"
+              >
+                Explore Projects
+              </a>
+            </div>
+
+            {/* Social row */}
+            <div
+              className="flex flex-wrap items-center gap-x-4 gap-y-2 opacity-0 animate-[fadeUp_0.6s_ease-out_0.6s_forwards]"
+            >
+              <a
+                href="https://www.linkedin.com/in/finn-nguyen"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 font-body text-sm text-muted hover:text-accent transition-colors"
+              >
+                <LinkedinIcon /> LinkedIn
+              </a>
+              <span className="text-border" aria-hidden>&middot;</span>
+              <a
+                href="https://github.com/finnnguyen"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 font-body text-sm text-muted hover:text-accent transition-colors"
+              >
+                <GithubIcon /> GitHub
+              </a>
+              <span className="text-border" aria-hidden>&middot;</span>
+              <a
+                href="mailto:Finnnguyen93@gmail.com"
+                className="flex items-center gap-1.5 font-body text-sm text-muted hover:text-accent transition-colors"
+              >
+                <MailIcon className="w-4 h-4" /> Email
+              </a>
+            </div>
           </div>
 
-          <h1
-            className="font-heading font-bold text-4xl sm:text-5xl md:text-6xl text-[#15181F] leading-tight tracking-tight mb-4 opacity-0 animate-[fadeUp_0.6s_ease-out_0.15s_forwards]"
-          >
-            Finn Nguyen
-          </h1>
-
-          <p
-            className="font-heading font-medium text-xl sm:text-2xl text-[#1F3864] mb-4 leading-snug opacity-0 animate-[fadeUp_0.6s_ease-out_0.3s_forwards]"
-          >
-            Software Engineer building full-stack and AI-powered applications
-          </p>
-
-          <p
-            className="font-body text-base sm:text-lg text-[#6b6560] mb-8 leading-relaxed max-w-xl opacity-0 animate-[fadeUp_0.6s_ease-out_0.45s_forwards]"
-          >
-            Focused on end-to-end delivery — from data pipelines and model evaluation to
-            shipped, deployed products.
-          </p>
-
-          {/* CTAs */}
+          {/* Illustration card */}
           <div
-            className="flex flex-wrap gap-3 opacity-0 animate-[fadeUp_0.6s_ease-out_0.6s_forwards]"
+            className="hidden lg:block opacity-0 animate-[fadeUp_0.6s_ease-out_0.35s_forwards]"
+            aria-hidden
           >
-            <a
-              href="#projects"
-              className="font-body text-sm font-medium px-5 py-2.5 bg-[#1F3864] text-white rounded hover:bg-[#162a4d] transition-colors"
-            >
-              View Projects
-            </a>
-            <a
-              href="/resumes/Finn-Nguyen-Resume-Software-Engineer.docx"
-              download
-              className="font-body text-sm font-medium px-5 py-2.5 border border-[#1F3864] text-[#1F3864] rounded hover:bg-[#1F3864] hover:text-white transition-colors"
-            >
-              Resume
-            </a>
-            <a
-              href="https://github.com/finnnguyen"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-body text-sm font-medium px-5 py-2.5 border border-[#e2ddd6] text-[#15181F] rounded hover:border-[#15181F] transition-colors"
-            >
-              GitHub
-            </a>
-            <a
-              href="https://www.linkedin.com/in/finn-nguyen"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-body text-sm font-medium px-5 py-2.5 border border-[#e2ddd6] text-[#15181F] rounded hover:border-[#15181F] transition-colors"
-            >
-              LinkedIn
-            </a>
+            <div className="relative w-72">
+              <div className="absolute -inset-4 rounded-[2rem] bg-accent/10 blur-2xl -z-10" />
+              <div className="rounded-3xl border-2 border-accent/25 bg-card shadow-xl p-6">
+                <div className="flex items-center gap-2 mb-6">
+                  <span className="relative flex w-2.5 h-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-60" />
+                    <span className="relative inline-flex rounded-full w-2.5 h-2.5 bg-accent" />
+                  </span>
+                  <span className="font-mono text-xs text-accent">
+                    Open to full-time roles
+                  </span>
+                </div>
+
+                <PipelineDiagram />
+
+                <div className="mt-6 pt-5 border-t border-border space-y-2.5">
+                  <div className="flex justify-between font-mono text-xs">
+                    <span className="text-muted">Lighthouse a11y score</span>
+                    <span className="text-ink font-medium">100/100</span>
+                  </div>
+                  <div className="flex justify-between font-mono text-xs">
+                    <span className="text-muted">Automated tests written</span>
+                    <span className="text-ink font-medium">79+</span>
+                  </div>
+                  <div className="flex justify-between font-mono text-xs">
+                    <span className="text-muted">Production apps shipped</span>
+                    <span className="text-ink font-medium">2</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="hidden sm:flex flex-col items-center gap-2 mt-16 mx-auto text-muted opacity-0 animate-[fadeUp_0.6s_ease-out_0.7s_forwards]">
+          <span className="font-mono text-xs uppercase tracking-wider">Scroll to explore</span>
+          <span className="animate-[bounceSlow_2.2s_ease-in-out_infinite]">
+            <ArrowDownIcon />
+          </span>
         </div>
       </section>
 
       {/* ── ABOUT ────────────────────────────────────────────────────────── */}
       <section
         id="about"
-        className="py-20 px-6 max-w-5xl mx-auto border-t border-[#e2ddd6]"
+        className="py-20 px-6 max-w-5xl mx-auto border-t border-border"
         aria-label="About"
       >
-        <h2 className="font-heading font-semibold text-2xl text-[#15181F] mb-6">
-          About
-        </h2>
-        <div className="max-w-2xl space-y-4">
-          <p className="font-body text-[#15181F] leading-relaxed">
+        <SectionHeader icon={<UserIcon />} title="About" />
+        <div className="max-w-2xl bg-card border border-border rounded-2xl p-6 space-y-4">
+          <p className="font-body text-ink leading-relaxed">
             I&apos;m a Computer Science graduate (Cal State Fullerton, May 2026) who likes finishing what I
             start — I&apos;ve taken two production systems (a salon booking platform and a staff rotation
             engine) all the way from schema design to a live deployment with database-enforced
@@ -495,7 +601,7 @@ export default function Home() {
             machine learning projects that go beyond training a model to actually improving and
             evaluating it.
           </p>
-          <p className="font-body text-[#15181F] leading-relaxed">
+          <p className="font-body text-ink leading-relaxed">
             Before this, I spent two-plus years managing daily operations and customer service for a
             busy local business, which is where I actually learned to prioritize under pressure and
             communicate clearly — skills that show up in how I work now. This fall, I&apos;ll be joining
@@ -507,17 +613,14 @@ export default function Home() {
       {/* ── FEATURED PROJECTS ────────────────────────────────────────────── */}
       <section
         id="projects"
-        className="py-20 px-6 max-w-5xl mx-auto border-t border-[#e2ddd6]"
+        className="py-20 px-6 max-w-5xl mx-auto border-t border-border"
         aria-label="Featured projects"
       >
-        <div className="mb-10">
-          <h2 className="font-heading font-semibold text-2xl text-[#15181F] mb-2">
-            Featured Projects
-          </h2>
-          <p className="font-body text-sm text-[#6b6560]">
-            Ranked by hiring value. Expand any card for the full technical breakdown.
-          </p>
-        </div>
+        <SectionHeader
+          icon={<FolderIcon />}
+          title="Featured Projects"
+          subtitle="Ranked by hiring value. Expand any card for the full technical breakdown."
+        />
 
         <div className="grid gap-5 sm:grid-cols-1 lg:grid-cols-2">
           {projects.map((p) => (
@@ -526,55 +629,51 @@ export default function Home() {
         </div>
 
         {/* Other projects */}
-        <div className="mt-8 pt-6 border-t border-[#e2ddd6]">
-          <h3 className="font-mono text-xs text-[#6b6560] uppercase tracking-wider mb-4">
+        <div className="mt-8 pt-6 border-t border-border">
+          <h3 className="font-mono text-xs text-muted uppercase tracking-wider mb-4">
             Also on GitHub
           </h3>
-          <ul className="space-y-4">
-            <li>
-              <div className="flex flex-wrap items-baseline gap-2 mb-0.5">
-                <a
-                  href="https://github.com/finnnguyen"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-body text-sm font-medium text-[#1F3864] underline underline-offset-2 hover:text-[#162a4d]"
-                >
-                  GitHub Repository Data Analysis
-                </a>
-                <span className="font-mono text-xs text-[#6b6560]">Personal · Python, pandas, Matplotlib · 2026</span>
-              </div>
-              <p className="font-body text-sm text-[#6b6560]">
-                EDA across 215,000+ repositories — language trends, star/fork patterns, and AI-repo growth over time.
-              </p>
-            </li>
-          </ul>
+          <div className="bg-card border border-border rounded-2xl p-5">
+            <div className="flex flex-wrap items-baseline gap-2 mb-1">
+              <a
+                href="https://github.com/finnnguyen"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-body text-sm font-medium text-accent underline underline-offset-2 hover:text-accent-hover"
+              >
+                GitHub Repository Data Analysis
+              </a>
+              <span className="font-mono text-xs text-muted">Personal · Python, pandas, Matplotlib · 2026</span>
+            </div>
+            <p className="font-body text-sm text-muted">
+              EDA across 215,000+ repositories — language trends, star/fork patterns, and AI-repo growth over time.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* ── FACULTY PROJECT (UPCOMING) ───────────────────────────────────── */}
       <section
         id="faculty-project"
-        className="py-20 px-6 max-w-5xl mx-auto border-t border-[#e2ddd6]"
+        className="py-20 px-6 max-w-5xl mx-auto border-t border-border"
         aria-label="Upcoming faculty-sponsored project"
       >
-        <h2 className="font-heading font-semibold text-2xl text-[#15181F] mb-6">
-          Upcoming
-        </h2>
+        <SectionHeader icon={<RocketIcon />} title="Upcoming" />
 
         <article
-          className="border-2 border-dashed border-[#1F3864]/30 rounded-lg p-6 bg-[#1F3864]/3 max-w-2xl"
+          className="border-2 border-dashed border-accent/30 rounded-2xl p-6 bg-accent-soft max-w-2xl"
           aria-label="Faculty-Sponsored Applied AI Project — Starting Fall 2026"
         >
           <div className="flex items-center gap-3 mb-4 flex-wrap">
-            <h3 className="font-heading font-semibold text-[#15181F] text-lg">
+            <h3 className="font-heading font-semibold text-ink text-lg">
               Faculty-Sponsored Applied AI Project
             </h3>
-            <span className="font-mono text-xs px-2 py-0.5 rounded-full border border-[#1F3864]/30 text-[#1F3864] bg-[#1F3864]/5">
+            <span className="font-mono text-xs px-2.5 py-0.5 rounded-full border border-accent/30 text-accent bg-card">
               Fall 2026 &middot; Client Confirmed
             </span>
           </div>
 
-          <p className="font-body text-[#15181F] text-sm leading-relaxed mb-3">
+          <p className="font-body text-ink text-sm leading-relaxed mb-3">
             Selected by a professor from my AI coursework to join a small team delivering a
             production AI system, pro bono, for a client the faculty sponsor sourced: a Senior VP
             at Colliers, one of the world&apos;s largest commercial real estate firms, who specializes
@@ -582,12 +681,12 @@ export default function Home() {
             to bring AI into that practice.
           </p>
 
-          <p className="font-body text-[#15181F] text-sm leading-relaxed mb-4">
+          <p className="font-body text-ink text-sm leading-relaxed mb-4">
             Unlike a class project, this will be a real system scoped directly with the client,
             with recurring check-ins on Zoom and in person over the course of the semester.
           </p>
 
-          <p className="font-body text-xs text-[#6b6560] italic">
+          <p className="font-body text-xs text-muted italic">
             Kickoff and scoping meetings are being scheduled for late September 2026 — details
             below will be updated once the project scope is finalized.
           </p>
@@ -597,29 +696,35 @@ export default function Home() {
       {/* ── SKILLS ───────────────────────────────────────────────────────── */}
       <section
         id="skills"
-        className="py-20 px-6 max-w-5xl mx-auto border-t border-[#e2ddd6]"
+        className="py-20 px-6 max-w-5xl mx-auto border-t border-border"
         aria-label="Technical skills"
       >
-        <h2 className="font-heading font-semibold text-2xl text-[#15181F] mb-2">
-          Technical Skills
-        </h2>
-        <p className="font-body text-sm text-[#6b6560] mb-8">
-          Tools I&apos;ve used to build the projects above — not a wishlist.
-        </p>
+        <SectionHeader
+          icon={<CodeIcon />}
+          title="Technical Skills"
+          subtitle="Tools I've used to build the projects above — not a wishlist."
+        />
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {skillGroups.map((group) => (
-            <div key={group.category}>
-              <h3 className="font-mono text-xs text-[#6b6560] uppercase tracking-wider mb-3">
+            <div
+              key={group.category}
+              className="bg-card border border-border rounded-2xl p-5 hover:border-accent/40 hover:shadow-md transition-all duration-200"
+            >
+              <h3 className="font-mono text-xs text-muted uppercase tracking-wider mb-3 flex items-center gap-2">
+                <FolderIcon className="w-4 h-4 text-accent" />
                 {group.category}
               </h3>
-              <ul className="space-y-2">
+              <div className="flex flex-wrap gap-2">
                 {group.skills.map((skill) => (
-                  <li key={skill} className="font-body text-sm text-[#15181F]">
+                  <span
+                    key={skill}
+                    className="font-mono text-[11px] px-2.5 py-1 rounded-full border border-accent/25 bg-accent-soft text-accent"
+                  >
                     {skill}
-                  </li>
+                  </span>
                 ))}
-              </ul>
+              </div>
             </div>
           ))}
         </div>
@@ -628,136 +733,185 @@ export default function Home() {
       {/* ── EXPERIENCE ───────────────────────────────────────────────────── */}
       <section
         id="experience"
-        className="py-20 px-6 max-w-5xl mx-auto border-t border-[#e2ddd6]"
+        className="py-20 px-6 max-w-5xl mx-auto border-t border-border"
         aria-label="Work experience"
       >
-        <h2 className="font-heading font-semibold text-2xl text-[#15181F] mb-8">
-          Experience
-        </h2>
+        <SectionHeader icon={<BriefcaseIcon />} title="Experience" />
 
-        <div className="max-w-2xl">
-          <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-3">
-            <h3 className="font-heading font-semibold text-[#15181F]">
+        <div className="max-w-2xl bg-card border border-border rounded-2xl p-6 hover:border-accent/40 hover:shadow-md transition-all duration-200">
+          <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
+            <h3 className="font-heading font-semibold text-ink">
               Manager
             </h3>
-            <span className="font-mono text-xs text-[#6b6560]">Aug 2026 – Present</span>
+            <span className="font-mono text-xs text-muted">Aug 2026 – Present</span>
           </div>
-          <p className="font-body text-sm text-[#6b6560] mb-2">
+          <p className="font-body text-sm text-muted mb-4">
             79 Nails and Hair &middot; Promoted from Assistant Manager (2023 – Aug 2026)
           </p>
-          <p className="font-body text-sm text-[#15181F] leading-relaxed">
-            Own full daily operations for a high-traffic salon end-to-end — staff rotation, cash
-            flow, customer complaints, staff supervision, and healthcare-grade cleanliness
-            standards — trusted to operate independently, reporting to the owner only 2–3x/week
-            since promotion from Assistant Manager. The same prioritization and communication
-            skills carry into how I scope and ship technical work.
-          </p>
+          <ul className="space-y-1.5 mb-5">
+            <li className="font-body text-sm text-muted flex gap-2">
+              <span className="text-accent"><CheckIcon /></span>
+              <span>
+                Own full daily operations for a high-traffic salon end-to-end — staff rotation, cash
+                flow, customer complaints, staff supervision, and healthcare-grade cleanliness standards
+              </span>
+            </li>
+            <li className="font-body text-sm text-muted flex gap-2">
+              <span className="text-accent"><CheckIcon /></span>
+              <span>
+                Trusted to operate independently, reporting to the owner only 2–3x/week since
+                promotion from Assistant Manager
+              </span>
+            </li>
+            <li className="font-body text-sm text-muted flex gap-2">
+              <span className="text-accent"><CheckIcon /></span>
+              <span>
+                The same prioritization and communication skills carry into how I scope and ship
+                technical work
+              </span>
+            </li>
+          </ul>
+          <div className="flex flex-wrap gap-2">
+            {experienceTags.map((tag) => (
+              <span
+                key={tag}
+                className="font-mono text-[11px] px-2.5 py-1 rounded-full bg-accent-soft text-accent border border-accent/20"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ── EDUCATION ────────────────────────────────────────────────────── */}
       <section
         id="education"
-        className="py-20 px-6 max-w-5xl mx-auto border-t border-[#e2ddd6]"
+        className="py-20 px-6 max-w-5xl mx-auto border-t border-border"
         aria-label="Education"
       >
-        <h2 className="font-heading font-semibold text-2xl text-[#15181F] mb-8">
-          Education
-        </h2>
+        <SectionHeader icon={<CapIcon />} title="Education" />
 
-        <div className="max-w-2xl">
-          <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-2">
-            <h3 className="font-heading font-semibold text-[#15181F]">
+        <div className="max-w-2xl bg-card border border-border rounded-2xl p-6 hover:border-accent/40 hover:shadow-md transition-all duration-200">
+          <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
+            <h3 className="font-heading font-semibold text-ink">
               B.S. Computer Science
             </h3>
-            <span className="font-mono text-xs text-[#6b6560]">May 2026</span>
+            <span className="font-mono text-xs text-muted">May 2026</span>
           </div>
-          <p className="font-body text-sm text-[#6b6560] mb-2">
+          <p className="font-body text-sm text-muted mb-4">
             California State University, Fullerton
           </p>
-          <div className="flex flex-wrap gap-2 mb-4">
-            <span className="font-mono text-xs px-2 py-0.5 rounded bg-[#eaf3f1] text-[#2F6F62] border border-[#2F6F62]/20">
+          <div className="flex flex-wrap gap-2 mb-5">
+            <span className="font-mono text-xs px-2.5 py-1 rounded-full bg-accent-soft text-accent border border-accent/20">
               Dean&apos;s List — Fall 2025
             </span>
-            <span className="font-mono text-xs px-2 py-0.5 rounded bg-[#eaf3f1] text-[#2F6F62] border border-[#2F6F62]/20">
+            <span className="font-mono text-xs px-2.5 py-1 rounded-full bg-accent-soft text-accent border border-accent/20">
               Dean&apos;s List — Spring 2026
             </span>
           </div>
-          <p className="font-body text-sm text-[#6b6560] leading-relaxed">
-            <span className="font-mono text-xs uppercase tracking-wider">Coursework</span>
-            {" "}— Data Structures, Algorithms Engineering, Software Engineering, Machine Learning, Applied AI, Artificial Intelligence, System Design, Operating Concepts
-          </p>
+          <h4 className="font-mono text-[11px] text-muted uppercase tracking-wider mb-2">
+            Coursework
+          </h4>
+          <div className="flex flex-wrap gap-2">
+            {coursework.map((course) => (
+              <span
+                key={course}
+                className="font-mono text-[11px] px-2.5 py-1 rounded-full border border-border text-muted"
+              >
+                {course}
+              </span>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ── CONTACT / FOOTER ─────────────────────────────────────────────── */}
       <footer
         id="contact"
-        className="py-20 px-6 max-w-5xl mx-auto border-t border-[#e2ddd6]"
+        className="py-20 px-6 max-w-5xl mx-auto border-t border-border"
         aria-label="Contact and footer"
       >
-        <h2 className="font-heading font-semibold text-2xl text-[#15181F] mb-3">
-          Get in Touch
-        </h2>
-        <p className="font-body text-sm text-[#6b6560] mb-8 max-w-md">
-          Open to full-time roles in Software Engineering, Data, and AI/ML. Best reached by email.
-        </p>
+        <SectionHeader
+          icon={<MailIcon />}
+          title="Get in Touch"
+          subtitle="Open to full-time roles in Software Engineering, Data, and AI/ML. Best reached by email."
+        />
 
-        <div className="flex flex-wrap gap-3 mb-10">
-          <a
-            href="mailto:Finnnguyen93@gmail.com"
-            className="font-body text-sm font-medium px-5 py-2.5 bg-[#1F3864] text-white rounded hover:bg-[#162a4d] transition-colors"
-          >
-            Email me
-          </a>
-          <a
-            href="https://www.linkedin.com/in/finn-nguyen"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-body text-sm font-medium px-5 py-2.5 border border-[#e2ddd6] text-[#15181F] rounded hover:border-[#15181F] transition-colors"
-          >
-            LinkedIn
-          </a>
-          <a
-            href="https://github.com/finnnguyen"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-body text-sm font-medium px-5 py-2.5 border border-[#e2ddd6] text-[#15181F] rounded hover:border-[#15181F] transition-colors"
-          >
-            GitHub
-          </a>
-        </div>
-
-        <div className="mb-12">
-          <h3 className="font-mono text-xs text-[#6b6560] uppercase tracking-wider mb-4">
-            Download Resume
-          </h3>
-          <div className="flex flex-wrap gap-2">
-            {[
-              { label: "Software Engineer", file: "Finn-Nguyen-Resume-Software-Engineer.docx" },
-              { label: "Application Engineer", file: "Finn-Nguyen-Resume-Application-Engineer.docx" },
-              { label: "AI / ML Engineer", file: "Finn-Nguyen-Resume-AI-ML-Engineer.docx" },
-              { label: "Data Analyst", file: "Finn-Nguyen-Resume-Data-Analyst.docx" },
-              { label: "Support Engineer", file: "Finn-Nguyen-Resume-Support-Engineer.docx" },
-              { label: "Technical Support", file: "Finn-Nguyen-Resume-Technical-Support.docx" },
-            ].map(({ label, file }) => (
+        <div className="grid gap-6 lg:grid-cols-2">
+          <div className="bg-card border border-border rounded-2xl p-6">
+            <h3 className="font-heading font-semibold text-ink mb-1">
+              Let&apos;s work together
+            </h3>
+            <p className="font-body text-sm text-muted mb-5">
+              Best reached by email — I usually respond within a day.
+            </p>
+            <ul className="space-y-2 mb-6">
+              {[
+                "Full-time Software Engineering roles",
+                "Data / AI & ML roles",
+                "Referrals and introductions",
+              ].map((item) => (
+                <li key={item} className="font-body text-sm text-ink flex gap-2">
+                  <span className="text-accent" aria-hidden>•</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="flex flex-wrap gap-3">
               <a
-                key={file}
-                href={`/resumes/${file}`}
-                download
-                className="font-body text-sm px-4 py-2 border border-[#e2ddd6] text-[#15181F] rounded hover:border-[#1F3864] hover:text-[#1F3864] transition-colors"
+                href="mailto:Finnnguyen93@gmail.com"
+                className="font-body text-sm font-medium px-5 py-2.5 rounded-full bg-gradient-to-r from-accent to-accent-strong text-white shadow-sm hover:shadow-lg hover:brightness-105 transition-all"
               >
-                {label} ↓
+                Email me
               </a>
-            ))}
+              <a
+                href="https://www.linkedin.com/in/finn-nguyen"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 font-body text-sm font-medium px-5 py-2.5 rounded-full border border-border text-ink hover:border-accent hover:text-accent transition-colors"
+              >
+                <LinkedinIcon /> LinkedIn
+              </a>
+              <a
+                href="https://github.com/finnnguyen"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 font-body text-sm font-medium px-5 py-2.5 rounded-full border border-border text-ink hover:border-accent hover:text-accent transition-colors"
+              >
+                <GithubIcon /> GitHub
+              </a>
+            </div>
+          </div>
+
+          <div className="bg-card border border-border rounded-2xl p-6">
+            <h3 className="font-heading font-semibold text-ink mb-1">
+              Download Resume
+            </h3>
+            <p className="font-body text-sm text-muted mb-5">
+              Tailored by role — pick the one closest to what you&apos;re hiring for.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {resumeDownloads.map(({ label, file }) => (
+                <a
+                  key={file}
+                  href={`/resumes/${file}`}
+                  download
+                  className="flex items-center gap-1.5 font-body text-sm px-4 py-2 rounded-full border border-border text-ink hover:border-accent hover:text-accent transition-colors"
+                >
+                  <ArrowDownIcon className="w-3.5 h-3.5" />
+                  {label}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-[#e2ddd6] pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-          <p className="font-mono text-xs text-[#6b6560]">
+        <div className="border-t border-border pt-6 mt-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+          <p className="font-mono text-xs text-muted">
             © {new Date().getFullYear()} Finn Nguyen
           </p>
-          <p className="font-mono text-xs text-[#6b6560]">
+          <p className="font-mono text-xs text-muted">
             Built with Next.js + Tailwind CSS · Deployed on Vercel
           </p>
         </div>

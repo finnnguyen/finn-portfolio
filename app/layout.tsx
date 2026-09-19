@@ -35,6 +35,16 @@ export const metadata: Metadata = {
   },
 };
 
+const themeInitScript = `
+(function () {
+  try {
+    var stored = localStorage.getItem("theme");
+    var theme = stored || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    if (theme === "dark") document.documentElement.classList.add("dark");
+  } catch (e) {}
+})();
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -43,9 +53,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${archivo.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable}`}
     >
-      <body className="antialiased">{children}</body>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
+      <body className="antialiased bg-bg text-ink" suppressHydrationWarning>
+        {children}
+      </body>
     </html>
   );
 }
