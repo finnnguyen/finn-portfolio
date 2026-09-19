@@ -6,10 +6,17 @@ interface Tech {
   label: string;
 }
 
+interface Media {
+  type: "gif" | "image";
+  src: string;
+  alt: string;
+}
+
 interface ProjectCardProps {
   rank: number;
   title: string;
   type: "Team" | "Personal";
+  media?: Media;
   oneLiner: string;
   bullets: string[];
   problem: string;
@@ -80,6 +87,7 @@ export default function ProjectCard({
   rank,
   title,
   type,
+  media,
   oneLiner,
   bullets,
   problem,
@@ -98,6 +106,17 @@ export default function ProjectCard({
 
   return (
     <article className="border border-border rounded-2xl bg-card hover:shadow-lg hover:border-accent/40 transition-all duration-200 overflow-hidden">
+      {media && (
+        <div className="aspect-[2/1] w-full bg-card-alt overflow-hidden border-b border-border">
+          {/* eslint-disable-next-line @next/next/no-img-element -- animated GIF must not go through Next's image optimizer */}
+          <img
+            src={media.src}
+            alt={media.alt}
+            loading="lazy"
+            className="w-full h-full object-cover object-top"
+          />
+        </div>
+      )}
       <div className="p-6">
         {/* Header row */}
         <div className="flex items-start justify-between gap-3 mb-3">

@@ -107,6 +107,11 @@ const projects = [
     rank: 1,
     title: "79 Nails & Hair — Production Booking Platform",
     type: "Personal" as const,
+    media: {
+      type: "gif" as const,
+      src: "/projects/79-nails-and-hair/demo.gif",
+      alt: "Walkthrough of the live 79 Nails & Hair booking flow — selecting a service, choosing a stylist, and picking a real available time slot",
+    },
     oneLiner:
       "A live booking platform for the salon I work at — real-time availability, a staff admin console, an AI-powered natural-language service search, and a full production-engineering pass most portfolio projects skip: database-enforced correctness, Row Level Security, CI, input validation, rate limiting, and error tracking, all verified against the real deployment.",
     bullets: [
@@ -147,6 +152,11 @@ const projects = [
     rank: 2,
     title: "Turn Rotation — Salon Staff Rotation & Fairness Engine",
     type: "Personal" as const,
+    media: {
+      type: "gif" as const,
+      src: "/projects/turn-rotation/demo.gif",
+      alt: "Turn Rotation landing page and the manager sign-in gate — the staff dashboard itself requires a manager account",
+    },
     oneLiner:
       "A concurrency-safe salon operations platform that manages a live employee rotation queue — atomic Postgres functions guarantee fairness under concurrent requests, Row Level Security enforces authorization, and AWS Textract turns an uploaded price list into manager-reviewed catalog drafts.",
     bullets: [
@@ -186,6 +196,11 @@ const projects = [
     rank: 3,
     title: "Spam Tool Kit",
     type: "Team" as const,
+    media: {
+      type: "image" as const,
+      src: "/projects/spam-tool-kit/screenshot.jpg",
+      alt: "Spam Tool Kit GitHub repository page",
+    },
     oneLiner:
       "A 4-module web app covering email spam detection (97.2% accuracy), SMS spam detection (99.28% accuracy), text analysis, and plagiarism checking — all in one Flask app.",
     bullets: [
@@ -250,6 +265,11 @@ const projects = [
     rank: 5,
     title: "DataChat — Natural Language CSV Queries",
     type: "Personal" as const,
+    media: {
+      type: "image" as const,
+      src: "/projects/datachat/screenshot.jpg",
+      alt: "DataChat GitHub repository page",
+    },
     oneLiner:
       "Upload any CSV and ask questions in plain English — GPT-4o-mini converts the question to SQL, runs it against SQLite, and explains the result. Prompt-engineered from 66.7% to 100% accuracy across 12 labeled test cases.",
     bullets: [
@@ -283,6 +303,11 @@ const projects = [
     rank: 6,
     title: "E-Commerce Platform (Zara-style)",
     type: "Team" as const,
+    media: {
+      type: "image" as const,
+      src: "/projects/ecommerce/screenshot.jpg",
+      alt: "Tied & True e-commerce storefront homepage",
+    },
     oneLiner:
       "A full-stack e-commerce platform with Stripe checkout, CMS-managed product catalog, and order management — built and shipped by a 3-person team.",
     bullets: [
