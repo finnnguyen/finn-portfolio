@@ -458,7 +458,7 @@ const coursework = [
 const experienceTags = ["Operations", "Staff Management", "Customer Service", "Process Ownership"];
 
 const resumeDownloads = [
-  { label: "Software Engineer", file: "Finn-Nguyen-Resume-Software-Engineer.docx" },
+  { label: "Software Engineer", file: "Finn-Nguyen-Resume-Software-Engineer.pdf" },
   { label: "Application Engineer", file: "Finn-Nguyen-Resume-Application-Engineer.docx" },
   { label: "AI / ML Engineer", file: "Finn-Nguyen-Resume-AI-ML-Engineer.docx" },
   { label: "Data Analyst", file: "Finn-Nguyen-Resume-Data-Analyst.docx" },
@@ -522,7 +522,7 @@ export default function Home() {
               className="flex flex-wrap gap-3 mb-6 opacity-0 animate-[fadeUp_0.6s_ease-out_0.5s_forwards]"
             >
               <a
-                href="/resumes/Finn-Nguyen-Resume-Software-Engineer.docx"
+                href="/resumes/Finn-Nguyen-Resume-Software-Engineer.pdf"
                 download
                 className="font-body text-sm font-medium px-5 py-2.5 rounded-full bg-gradient-to-r from-accent to-accent-strong text-white shadow-sm hover:shadow-lg hover:brightness-105 transition-all"
               >
