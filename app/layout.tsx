@@ -10,14 +10,19 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://finn-portfolio-phi.vercel.app"),
   title: "Finn Nguyen — Software Engineer",
   description:
-    "Software Engineer building full-stack and AI-powered applications. Focused on end-to-end delivery — from data pipelines and model evaluation to shipped, deployed products.",
+    "Software Engineer building reliable, production-grade applications for real businesses. Cal State Fullerton CS graduate, 2026.",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Finn Nguyen — Software Engineer",
     description:
-      "Full-stack and AI-powered application development. Cal State Fullerton CS graduate, 2026.",
+      "Software Engineer building reliable, production-grade applications for real businesses. Cal State Fullerton CS graduate, 2026.",
     type: "website",
+    url: "/",
   },
 };
 
