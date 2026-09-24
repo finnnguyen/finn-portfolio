@@ -352,13 +352,13 @@ export default function Home() {
               <a
                 href="/resumes/Finn-Nguyen-Resume-Software-Engineer.pdf"
                 download
-                className="font-body text-[16px] px-4 pt-[7px] pb-[6px] rounded-btn bg-carbon text-white hover:bg-accent-hover transition-colors"
+                className="font-body text-[16px] px-3 pt-[6px] pb-[5px] rounded-btn bg-carbon text-white hover:bg-accent-hover transition-colors"
               >
                 Download Resume
               </a>
               <a
                 href="#projects"
-                className="font-body text-[16px] px-4 pt-[7px] pb-[6px] rounded-btn border border-ink text-ink hover:bg-ink/5 transition-colors"
+                className="font-body text-[16px] px-3 pt-[6px] pb-[5px] rounded-btn border border-ink text-ink hover:bg-ink/5 transition-colors"
               >
                 Explore Projects
               </a>
@@ -705,7 +705,7 @@ export default function Home() {
             <div className="flex flex-wrap gap-3">
               <a
                 href="mailto:Finnnguyen93@gmail.com"
-                className="font-body text-[16px] px-4 pt-[7px] pb-[6px] rounded-btn bg-carbon text-white hover:bg-accent-hover transition-colors"
+                className="font-body text-[16px] px-3 pt-[6px] pb-[5px] rounded-btn bg-carbon text-white hover:bg-accent-hover transition-colors"
               >
                 Email me
               </a>
@@ -713,7 +713,7 @@ export default function Home() {
                 href="https://www.linkedin.com/in/finn-nguyen"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 font-body text-[16px] px-4 pt-[7px] pb-[6px] rounded-btn border border-ink text-ink hover:bg-ink/5 transition-colors"
+                className="flex items-center gap-1.5 font-body text-[16px] px-3 pt-[6px] pb-[5px] rounded-btn border border-ink text-ink hover:bg-ink/5 transition-colors"
               >
                 <LinkedinIcon /> LinkedIn
               </a>
@@ -721,7 +721,7 @@ export default function Home() {
                 href="https://github.com/finnnguyen"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 font-body text-[16px] px-4 pt-[7px] pb-[6px] rounded-btn border border-ink text-ink hover:bg-ink/5 transition-colors"
+                className="flex items-center gap-1.5 font-body text-[16px] px-3 pt-[6px] pb-[5px] rounded-btn border border-ink text-ink hover:bg-ink/5 transition-colors"
               >
                 <GithubIcon /> GitHub
               </a>
@@ -741,7 +741,7 @@ export default function Home() {
                   key={file}
                   href={`/resumes/${file}`}
                   download
-                  className="flex items-center gap-1.5 font-body text-sm px-4 py-2 rounded-btn border border-ink text-ink hover:bg-ink/5 transition-colors"
+                  className="flex items-center gap-1.5 font-body text-sm px-3 pt-[6px] pb-[5px] rounded-btn border border-ink text-ink hover:bg-ink/5 transition-colors"
                 >
                   <ArrowDownIcon className="w-3.5 h-3.5" />
                   {label}

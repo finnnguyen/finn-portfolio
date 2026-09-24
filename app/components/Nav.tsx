@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const links = [
   { label: "Projects", href: "#projects" },
@@ -11,20 +11,9 @@ const links = [
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 8);
-    window.addEventListener("scroll", handler, { passive: true });
-    return () => window.removeEventListener("scroll", handler);
-  }, []);
 
   return (
-    <header
-      className={`fixed top-0 inset-x-0 z-50 bg-bg border-b transition-shadow duration-200 ${
-        scrolled ? "border-border" : "border-transparent"
-      }`}
-    >
+    <header className="fixed top-0 inset-x-0 z-50 bg-bg border-b border-border">
       <nav
         className="max-w-[1200px] mx-auto px-4 h-16 flex items-center justify-between"
         aria-label="Primary navigation"
