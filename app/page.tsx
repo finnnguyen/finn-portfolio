@@ -444,9 +444,6 @@ const coursework = [
   "Data Structures",
   "Algorithms Engineering",
   "Software Engineering",
-  "Machine Learning",
-  "Applied AI",
-  "Artificial Intelligence",
   "System Design",
   "Operating Concepts",
 ];
@@ -455,11 +452,6 @@ const experienceTags = ["Operations", "Staff Management", "Customer Service", "P
 
 const resumeDownloads = [
   { label: "Software Engineer", file: "Finn-Nguyen-Resume-Software-Engineer.pdf" },
-  { label: "Application Engineer", file: "Finn-Nguyen-Resume-Application-Engineer.docx" },
-  { label: "AI / ML Engineer", file: "Finn-Nguyen-Resume-AI-ML-Engineer.docx" },
-  { label: "Data Analyst", file: "Finn-Nguyen-Resume-Data-Analyst.docx" },
-  { label: "Support Engineer", file: "Finn-Nguyen-Resume-Support-Engineer.docx" },
-  { label: "Technical Support", file: "Finn-Nguyen-Resume-Technical-Support.docx" },
 ];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
@@ -484,7 +476,7 @@ export default function Home() {
                 Software Engineer
               </span>
               <span className="font-body text-xs px-3 py-1 rounded-full border border-border text-muted">
-                Fullerton, CA
+                Garden Grove, CA
               </span>
             </div>
 
@@ -644,7 +636,7 @@ export default function Home() {
           subtitle="Ranked by hiring value. Expand any card for the full technical breakdown."
         />
 
-        <div className="grid gap-5 sm:grid-cols-1 lg:grid-cols-2">
+        <div className="grid gap-5 max-w-3xl">
           {projects.map((p) => (
             <ProjectCard key={p.title} {...p} />
           ))}
@@ -772,22 +764,15 @@ export default function Home() {
             <li className="font-body text-sm text-muted flex gap-2">
               <span className="text-ink"><CheckIcon /></span>
               <span>
-                Own full daily operations for a high-traffic salon end-to-end — staff rotation, cash
-                flow, customer complaints, staff supervision, and healthcare-grade cleanliness standards
+                Run daily operations for a 7-person salon — staff rotation, scheduling, and cash
+                reconciliation — reporting to the owner only 2–3x/week
               </span>
             </li>
             <li className="font-body text-sm text-muted flex gap-2">
               <span className="text-ink"><CheckIcon /></span>
               <span>
-                Trusted to operate independently, reporting to the owner only 2–3x/week since
-                promotion from Assistant Manager
-              </span>
-            </li>
-            <li className="font-body text-sm text-muted flex gap-2">
-              <span className="text-ink"><CheckIcon /></span>
-              <span>
-                The same prioritization and communication skills carry into how I scope and ship
-                technical work
+                Identified real scheduling and turn-fairness problems on the floor and built the
+                booking platform and rotation engine featured above
               </span>
             </li>
           </ul>

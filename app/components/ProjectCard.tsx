@@ -208,6 +208,9 @@ export default function ProjectCard({
             >
               Open live manager dashboard <ExternalLinkIcon />
             </a>
+            <p className="font-body text-[11px] text-muted mt-2">
+              Isolated demo account scoped to seeded sample data — no real salon data or customers.
+            </p>
           </div>
         )}
 
