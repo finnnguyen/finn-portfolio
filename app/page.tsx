@@ -311,10 +311,10 @@ export default function Home() {
             <div
               className="flex flex-wrap gap-2 mb-6 opacity-0 animate-[fadeUp_0.6s_ease-out_forwards]"
             >
-              <span className="font-body text-xs px-3 py-1 rounded-full border border-border text-muted">
+              <span className="font-body text-xs px-3 py-1 rounded-full border border-ink text-ink">
                 Software Engineer
               </span>
-              <span className="font-body text-xs px-3 py-1 rounded-full border border-border text-muted">
+              <span className="font-body text-xs px-3 py-1 rounded-full border border-ink text-ink">
                 Garden Grove, CA
               </span>
             </div>
@@ -326,7 +326,7 @@ export default function Home() {
             </p>
 
             <h1
-              className="font-heading font-semibold text-5xl sm:text-6xl lg:text-[58px] text-ink leading-[1.05] tracking-[-0.02em] mb-4 opacity-0 animate-[fadeUp_0.6s_ease-out_0.2s_forwards]"
+              className="font-heading font-medium text-[44px] sm:text-[58px] lg:text-[70px] text-ink leading-[1] tracking-[-0.04em] mb-4 opacity-0 animate-[fadeUp_0.6s_ease-out_0.2s_forwards]"
             >
               Finn Nguyen.
             </h1>
@@ -334,7 +334,8 @@ export default function Home() {
             <p
               className="font-body font-medium text-lg sm:text-xl text-ink mb-4 leading-snug opacity-0 animate-[fadeUp_0.6s_ease-out_0.3s_forwards]"
             >
-              Software engineer building reliable, production-grade applications for real businesses
+              Software engineer building reliable, production-grade applications for{" "}
+              <span className="text-electric-blue">real businesses</span>
             </p>
 
             <p
@@ -351,13 +352,13 @@ export default function Home() {
               <a
                 href="/resumes/Finn-Nguyen-Resume-Software-Engineer.pdf"
                 download
-                className="font-body text-sm font-medium px-5 py-[7px] rounded-3xl bg-accent text-on-accent hover:bg-accent-hover transition-colors"
+                className="font-body text-[16px] px-4 pt-[7px] pb-[6px] rounded-btn bg-carbon text-white hover:bg-accent-hover transition-colors"
               >
                 Download Resume
               </a>
               <a
                 href="#projects"
-                className="font-body text-sm font-medium px-5 py-[7px] rounded-3xl border border-border text-ink hover:border-ink transition-colors"
+                className="font-body text-[16px] px-4 pt-[7px] pb-[6px] rounded-btn border border-ink text-ink hover:bg-ink/5 transition-colors"
               >
                 Explore Projects
               </a>
@@ -399,31 +400,31 @@ export default function Home() {
             className="hidden lg:block opacity-0 animate-[fadeUp_0.6s_ease-out_0.35s_forwards]"
             aria-hidden
           >
-            <div className="w-72 rounded-[4px] border border-border bg-card p-5">
+            <div className="w-72 rounded-card bg-graphite p-5 text-mist">
               <div className="flex items-center gap-2 mb-6">
                 <span className="relative flex w-2 h-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-50" />
-                  <span className="relative inline-flex rounded-full w-2 h-2 bg-accent" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-electric-blue opacity-50" />
+                  <span className="relative inline-flex rounded-full w-2 h-2 bg-electric-blue" />
                 </span>
-                <span className="font-body text-xs text-muted">
+                <span className="font-body text-xs text-mist/70">
                   Open to full-time roles
                 </span>
               </div>
 
               <PipelineDiagram />
 
-              <div className="mt-6 pt-5 border-t border-border space-y-2.5">
+              <div className="mt-6 pt-5 border-t border-white/10 space-y-2.5">
                 <div className="flex justify-between font-body text-xs">
-                  <span className="text-muted">Real assignments validated</span>
-                  <span className="text-ink font-medium">350+</span>
+                  <span className="text-mist/70">Real assignments validated</span>
+                  <span className="font-mono text-white font-medium">350+</span>
                 </div>
                 <div className="flex justify-between font-body text-xs">
-                  <span className="text-muted">Automated tests written</span>
-                  <span className="text-ink font-medium">79+</span>
+                  <span className="text-mist/70">Automated tests written</span>
+                  <span className="font-mono text-white font-medium">79+</span>
                 </div>
                 <div className="flex justify-between font-body text-xs">
-                  <span className="text-muted">Production apps shipped</span>
-                  <span className="text-ink font-medium">2</span>
+                  <span className="text-mist/70">Production apps shipped</span>
+                  <span className="font-mono text-white font-medium">2</span>
                 </div>
               </div>
             </div>
@@ -446,7 +447,7 @@ export default function Home() {
         aria-label="About"
       >
         <SectionHeader title="About" />
-        <div className="max-w-2xl bg-card border border-border rounded-[4px] p-5 space-y-4">
+        <div className="max-w-2xl bg-card border border-border rounded-card p-5 space-y-4">
           <p className="font-body text-ink leading-relaxed">
             I&apos;m a Computer Science graduate (Cal State Fullerton, May 2026) who builds software for
             real business workflows. I designed and deployed a customer booking platform and an
@@ -484,14 +485,14 @@ export default function Home() {
           <h3 className="font-body text-xs text-muted uppercase tracking-wider mb-4">
             Also on GitHub
           </h3>
-          <div className="bg-card border border-border rounded-[4px] p-5 space-y-5">
+          <div className="bg-card border border-border rounded-card p-5 space-y-5">
             <div>
               <div className="flex flex-wrap items-baseline gap-2 mb-1">
                 <a
                   href="https://github.com/finnnguyen"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-body text-sm font-medium text-ink underline underline-offset-2 hover:text-graphite"
+                  className="font-body text-sm font-medium text-electric-blue underline-offset-2 hover:underline"
                 >
                   GitHub Repository Data Analysis
                 </a>
@@ -507,7 +508,7 @@ export default function Home() {
                   href="https://github.com/br-zee/362-final-project"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-body text-sm font-medium text-ink underline underline-offset-2 hover:text-graphite"
+                  className="font-body text-sm font-medium text-electric-blue underline-offset-2 hover:underline"
                 >
                   E-Commerce Platform (Zara-style)
                 </a>
@@ -532,10 +533,10 @@ export default function Home() {
         <SectionHeader title="Upcoming" />
 
         <article
-          className="border border-dashed border-border rounded-[4px] p-4 bg-card-alt max-w-2xl"
+          className="border border-dashed border-steel/40 rounded-card p-4 bg-card-alt max-w-2xl"
           aria-label="Faculty-Sponsored Applied AI Project — Starting Fall 2026"
         >
-          <h3 className="font-body font-semibold text-ink text-sm mb-1.5">
+          <h3 className="font-body font-medium text-ink text-sm mb-1.5">
             Faculty-Sponsored Applied AI Project — Fall 2026
           </h3>
           <p className="font-body text-muted text-sm leading-relaxed">
@@ -561,7 +562,7 @@ export default function Home() {
           {skillGroups.map((group) => (
             <div
               key={group.category}
-              className="rounded-[4px] border border-border bg-card p-4"
+              className="rounded-card border border-border bg-card p-4"
             >
               <h3 className="font-body text-xs uppercase tracking-[0.08em] font-medium mb-3 text-muted">
                 {group.category}
@@ -570,7 +571,7 @@ export default function Home() {
                 {group.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="font-body text-[11px] px-2.5 py-1 rounded-full bg-card-alt text-ink"
+                    className="font-mono text-[11px] px-2.5 py-1 rounded-full bg-card-alt text-ink"
                   >
                     {skill}
                   </span>
@@ -589,9 +590,9 @@ export default function Home() {
       >
         <SectionHeader title="Experience" />
 
-        <div className="max-w-2xl bg-card border border-border rounded-[4px] p-5 hover:shadow-[0_10px_20px_rgba(0,0,0,0.05)] transition-shadow duration-200">
+        <div className="max-w-2xl bg-card border border-border rounded-card p-5 shadow-[0_1px_2px_0_rgb(0_0_0/0.05)]">
           <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
-            <h3 className="font-body font-semibold text-ink">
+            <h3 className="font-body font-medium text-ink">
               Manager
             </h3>
             <span className="font-body text-xs text-muted">Aug 2026 – Present</span>
@@ -636,9 +637,9 @@ export default function Home() {
       >
         <SectionHeader title="Education" />
 
-        <div className="max-w-2xl bg-card border border-border rounded-[4px] p-5 hover:shadow-[0_10px_20px_rgba(0,0,0,0.05)] transition-shadow duration-200">
+        <div className="max-w-2xl bg-card border border-border rounded-card p-5 shadow-[0_1px_2px_0_rgb(0_0_0/0.05)]">
           <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
-            <h3 className="font-body font-semibold text-ink">
+            <h3 className="font-body font-medium text-ink">
               B.S. Computer Science
             </h3>
             <span className="font-body text-xs text-muted">May 2026</span>
@@ -682,8 +683,8 @@ export default function Home() {
         />
 
         <div className="grid gap-5 lg:grid-cols-2">
-          <div className="bg-card border border-border rounded-[4px] p-5">
-            <h3 className="font-body font-semibold text-ink mb-1">
+          <div className="bg-card border border-border rounded-card p-5">
+            <h3 className="font-body font-medium text-ink mb-1">
               Let&apos;s work together
             </h3>
             <p className="font-body text-sm text-muted mb-5">
@@ -704,7 +705,7 @@ export default function Home() {
             <div className="flex flex-wrap gap-3">
               <a
                 href="mailto:Finnnguyen93@gmail.com"
-                className="font-body text-sm font-medium px-5 py-[7px] rounded-3xl bg-accent text-on-accent hover:bg-accent-hover transition-colors"
+                className="font-body text-[16px] px-4 pt-[7px] pb-[6px] rounded-btn bg-carbon text-white hover:bg-accent-hover transition-colors"
               >
                 Email me
               </a>
@@ -712,7 +713,7 @@ export default function Home() {
                 href="https://www.linkedin.com/in/finn-nguyen"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 font-body text-sm font-medium px-5 py-[7px] rounded-3xl border border-border text-ink hover:border-ink transition-colors"
+                className="flex items-center gap-1.5 font-body text-[16px] px-4 pt-[7px] pb-[6px] rounded-btn border border-ink text-ink hover:bg-ink/5 transition-colors"
               >
                 <LinkedinIcon /> LinkedIn
               </a>
@@ -720,15 +721,15 @@ export default function Home() {
                 href="https://github.com/finnnguyen"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 font-body text-sm font-medium px-5 py-[7px] rounded-3xl border border-border text-ink hover:border-ink transition-colors"
+                className="flex items-center gap-1.5 font-body text-[16px] px-4 pt-[7px] pb-[6px] rounded-btn border border-ink text-ink hover:bg-ink/5 transition-colors"
               >
                 <GithubIcon /> GitHub
               </a>
             </div>
           </div>
 
-          <div className="bg-card border border-border rounded-[4px] p-5">
-            <h3 className="font-body font-semibold text-ink mb-1">
+          <div className="bg-card border border-border rounded-card p-5">
+            <h3 className="font-body font-medium text-ink mb-1">
               Download Resume
             </h3>
             <p className="font-body text-sm text-muted mb-5">
@@ -740,7 +741,7 @@ export default function Home() {
                   key={file}
                   href={`/resumes/${file}`}
                   download
-                  className="flex items-center gap-1.5 font-body text-sm px-4 py-2 rounded-full border border-border text-ink hover:border-ink transition-colors"
+                  className="flex items-center gap-1.5 font-body text-sm px-4 py-2 rounded-btn border border-ink text-ink hover:bg-ink/5 transition-colors"
                 >
                   <ArrowDownIcon className="w-3.5 h-3.5" />
                   {label}

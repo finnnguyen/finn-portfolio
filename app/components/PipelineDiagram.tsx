@@ -5,7 +5,7 @@ export default function PipelineDiagram() {
     <div className="flex flex-wrap items-center gap-y-2 select-none" aria-label="Pipeline: Ingest → Build → Evaluate → Ship" role="img">
       {steps.map((step, i) => (
         <div key={step} className="flex items-center">
-          <span className="font-body text-xs border border-current/25 rounded-full px-3 py-1 bg-current/10 whitespace-nowrap">
+          <span className="font-mono text-[11px] border border-current/25 rounded-full px-3 py-1 bg-current/10 whitespace-nowrap">
             {step}
           </span>
           {i < steps.length - 1 && (

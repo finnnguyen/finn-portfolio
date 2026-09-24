@@ -1,52 +1,47 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
-
 /*
-  Plain (non-inline) @theme: Tailwind emits utilities that reference
-  var(--color-*), so overriding these custom properties under .dark
-  below actually changes rendered colors at runtime. `@theme inline`
-  bakes literal values into the generated CSS instead and would break
-  the dark-mode toggle.
-
-  Deliberately minimal palette: one neutral scale, one action color
-  (Charcoal), no accent-card deck, no dark inverted surfaces. Simple
-  over decorative — every card looks the same, every button is flat.
+  "Devin" style reference — electric ink on drafting paper. Warm off-white
+  canvas, near-black type, one electric violet-blue interruption. Light
+  theme only (source spec defines no dark variant), so semantic aliases
+  (bg/card/ink/muted/etc.) point straight at the literal palette below —
+  no .dark override layer.
 */
 @theme {
-  --color-bg: #FFFFFF;
-  --color-card: #FFFFFF;
-  --color-card-alt: #F5F6F9;
-  --color-ink: #14171F;
-  --color-muted: #677084;
-  --color-fog: #9BA2B0;
-  --color-border: #E5E7EB;
-  --color-graphite: #373F51;
-  --color-accent: #222834;
-  --color-accent-hover: #171B24;
-  --color-on-accent: #FFFFFF;
-}
+  /* Literal palette */
+  --color-paper: #F7F6F5;
+  --color-carbon: #141414;
+  --color-tile-gray: #EFEFEF;
+  --color-mist: #E7E7E7;
+  --color-graphite: #1F1F1F;
+  --color-steel: #7D7D7D;
+  --color-white: #FFFFFF;
+  --color-electric-blue: #2200FF;
 
-.dark {
-  --color-bg: #0B0D12;
-  --color-card: #12151B;
-  --color-card-alt: #161920;
-  --color-ink: #EDEFF3;
-  --color-muted: #9BA2B0;
-  --color-fog: #6B7280;
-  --color-border: #262A33;
-  --color-graphite: #B8BEC9;
-  --color-accent: #F5F6F9;
-  --color-accent-hover: #E2E4EA;
-  --color-on-accent: #14171F;
+  /* Semantic aliases used across components */
+  --color-bg: var(--color-paper);
+  --color-card: var(--color-tile-gray);
+  --color-card-alt: var(--color-mist);
+  --color-ink: var(--color-carbon);
+  --color-muted: var(--color-steel);
+  --color-fog: var(--color-steel);
+  --color-border: rgb(0 0 0 / 0.10);
+  --color-accent: var(--color-carbon);
+  --color-accent-hover: #2A2A2A;
+  --color-on-accent: var(--color-white);
+
+  /* Radii */
+  --radius-card: 16px;
+  --radius-btn: 2px;
+  --radius-accent: 7.2px;
 }
 
 @theme inline {
-  /* Single typeface — headings are just a bolder weight of the same
-     font, not a second display face. One less thing competing for
-     attention. */
+  /* nbInternationalPro substitute: Inter. geistMono for sparse
+     machine-readable texture (tech tags, rank numbers, stats). */
   --font-heading: var(--font-inter);
   --font-body: var(--font-inter);
+  --font-mono: var(--font-geist-mono);
   --animate-fade-up: fadeUp 0.6s ease-out forwards;
   --animate-fade-up-1: fadeUp 0.6s ease-out 0.15s forwards;
   --animate-fade-up-2: fadeUp 0.6s ease-out 0.3s forwards;
@@ -84,7 +79,6 @@ body {
   color: var(--color-ink);
   font-family: var(--font-body), system-ui, sans-serif;
   letter-spacing: -0.01em;
-  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -99,7 +93,7 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-electric-blue);
   outline-offset: 3px;
   border-radius: 2px;
 }

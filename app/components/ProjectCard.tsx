@@ -113,7 +113,7 @@ export default function ProjectCard({
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <article className="rounded-[4px] border border-border bg-card overflow-hidden transition-shadow duration-200 hover:shadow-[0_10px_20px_rgba(0,0,0,0.06)]">
+    <article className="rounded-card border border-border bg-card overflow-hidden shadow-[0_1px_2px_0_rgb(0_0_0/0.05)] hover:border-ink/20 transition-colors duration-200">
       {media && (
         <div className="aspect-[2/1] w-full overflow-hidden border-b border-border">
           {/* eslint-disable-next-line @next/next/no-img-element -- animated GIF must not go through Next's image optimizer */}
@@ -129,13 +129,13 @@ export default function ProjectCard({
         {/* Header row */}
         <div className="flex items-start justify-between gap-3 mb-2.5">
           <div className="flex items-baseline gap-2.5 flex-wrap">
-            <span className="font-body text-xs text-muted tabular-nums">
+            <span className="font-mono text-xs text-muted tabular-nums">
               {String(rank).padStart(2, "0")}
             </span>
-            <h3 className="font-body font-semibold text-[15px] leading-snug text-ink">
+            <h3 className="font-body font-medium text-[15px] leading-snug text-ink">
               {title}
             </h3>
-            <span className="font-body text-[11px] px-2 py-0.5 rounded-full border border-border text-muted">
+            <span className="font-body text-[11px] px-2 py-0.5 rounded-full border border-ink text-ink">
               {type}
             </span>
           </div>
@@ -148,7 +148,7 @@ export default function ProjectCard({
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="View source on GitHub"
-                  className="flex items-center justify-center w-7 h-7 rounded-full border border-border text-muted hover:border-ink hover:text-ink transition-colors"
+                  className="flex items-center justify-center w-7 h-7 rounded-full border border-border text-muted hover:border-electric-blue hover:text-electric-blue transition-colors"
                 >
                   <GithubIcon />
                 </a>
@@ -159,7 +159,7 @@ export default function ProjectCard({
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="View live demo"
-                  className="flex items-center justify-center w-7 h-7 rounded-full border border-border text-muted hover:border-ink hover:text-ink transition-colors"
+                  className="flex items-center justify-center w-7 h-7 rounded-full border border-border text-muted hover:border-electric-blue hover:text-electric-blue transition-colors"
                 >
                   <ExternalLinkIcon />
                 </a>
@@ -188,7 +188,7 @@ export default function ProjectCard({
         )}
 
         {tryItYourself && (
-          <div className="rounded-[4px] border border-border bg-card-alt p-3 mb-3">
+          <div className="rounded-card border border-border bg-card-alt p-3 mb-3">
             <p className="font-body text-[11px] uppercase tracking-[0.08em] font-medium mb-2 text-muted">
               Try it yourself — live manager login
             </p>
@@ -204,7 +204,7 @@ export default function ProjectCard({
               href={tryItYourself.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 font-body text-sm font-medium px-4 py-[7px] rounded-3xl bg-accent text-on-accent hover:bg-accent-hover transition-colors"
+              className="inline-flex items-center gap-1.5 font-body text-sm font-medium px-4 py-[7px] rounded-accent bg-electric-blue text-white hover:opacity-90 transition-opacity"
             >
               Open live manager dashboard <ExternalLinkIcon />
             </a>
@@ -219,7 +219,7 @@ export default function ProjectCard({
           {tech.map((t) => (
             <span
               key={t.label}
-              className="font-body text-[11px] px-2.5 py-1 rounded-full bg-card-alt text-ink"
+              className="font-mono text-[11px] px-2.5 py-1 rounded-full bg-card-alt text-ink"
             >
               {t.label}
             </span>
@@ -230,7 +230,7 @@ export default function ProjectCard({
         <button
           onClick={() => setExpanded((v) => !v)}
           aria-expanded={expanded}
-          className="font-body text-sm font-medium transition-colors flex items-center gap-1.5 text-graphite hover:text-ink"
+          className="font-body text-sm font-medium transition-colors flex items-center gap-1.5 text-ink hover:text-electric-blue"
         >
           <ChevronIcon expanded={expanded} />
           {expanded ? "Collapse" : "Read more"}
