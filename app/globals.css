@@ -9,13 +9,9 @@
   bakes literal values into the generated CSS instead and would break
   the dark-mode toggle.
 
-  Palette adapted from the Contra design reference (DESIGN.md): a flat
-  editorial white canvas where Charcoal is the only filled-action
-  color, hairline borders do the structural work, and a fixed 5-color
-  deck (Iris/Orchid/Wine/Coral/Lime) is reserved for category-card
-  fills only. The reference is light-only; the dark variant below
-  inverts the same relationships (Charcoal becomes a light fill on a
-  near-black canvas) to keep this site's existing theme toggle.
+  Deliberately minimal palette: one neutral scale, one action color
+  (Charcoal), no accent-card deck, no dark inverted surfaces. Simple
+  over decorative — every card looks the same, every button is flat.
 */
 @theme {
   --color-bg: #FFFFFF;
@@ -29,15 +25,6 @@
   --color-accent: #222834;
   --color-accent-hover: #171B24;
   --color-on-accent: #FFFFFF;
-  --color-surface-dark: #14171F;
-  --color-on-surface-dark: #FFFFFF;
-
-  /* Fixed accent-card deck — same in both themes, card-fill only */
-  --color-iris: #6A57E3;
-  --color-orchid: #CD74DD;
-  --color-wine: #45192F;
-  --color-coral: #FF5A5E;
-  --color-lime: #F0FB96;
 }
 
 .dark {
@@ -55,7 +42,10 @@
 }
 
 @theme inline {
-  --font-heading: var(--font-fraunces);
+  /* Single typeface — headings are just a bolder weight of the same
+     font, not a second display face. One less thing competing for
+     attention. */
+  --font-heading: var(--font-inter);
   --font-body: var(--font-inter);
   --animate-fade-up: fadeUp 0.6s ease-out forwards;
   --animate-fade-up-1: fadeUp 0.6s ease-out 0.15s forwards;
@@ -112,13 +102,4 @@ body {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
   border-radius: 2px;
-}
-
-/* Contra's signature two-layer soft shadow — the only shadow vocabulary
-   for filled buttons. No colored glows, no gradients on buttons/cards. */
-.shadow-action {
-  box-shadow: 0 4px 10px rgba(34, 40, 52, 0.05), -2px 18px 18px rgba(34, 40, 52, 0.04);
-}
-.dark .shadow-action {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25), -2px 18px 18px rgba(0, 0, 0, 0.15);
 }

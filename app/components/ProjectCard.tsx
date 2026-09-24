@@ -37,7 +37,6 @@ interface ProjectCardProps {
   demoUrl?: string;
   demoNote?: string;
   archDiagram?: React.ReactNode;
-  featured?: boolean;
 }
 
 function GithubIcon() {
@@ -110,24 +109,13 @@ export default function ProjectCard({
   demoUrl,
   demoNote,
   archDiagram,
-  featured = false,
 }: ProjectCardProps) {
   const [expanded, setExpanded] = useState(false);
 
-  const base = featured ? "bg-accent text-on-accent" : "bg-card text-ink";
-  const mutedText = featured ? "text-on-accent/65" : "text-muted";
-  const borderTone = featured ? "border-white/15" : "border-border";
-  const linkIconTone = featured
-    ? "border-white/25 text-on-accent/80 hover:border-white/60 hover:text-on-accent"
-    : "border-border text-muted hover:border-ink hover:text-ink";
-  const pillTone = featured
-    ? "bg-white/10 text-on-accent border border-white/20"
-    : "bg-card-alt text-ink";
-
   return (
-    <article className={`rounded-[4px] border ${borderTone} ${base} transition-shadow duration-200 hover:shadow-[0_10px_20px_rgba(0,0,0,0.08)] overflow-hidden`}>
+    <article className="rounded-[4px] border border-border bg-card overflow-hidden transition-shadow duration-200 hover:shadow-[0_10px_20px_rgba(0,0,0,0.06)]">
       {media && (
-        <div className={`aspect-[2/1] w-full overflow-hidden border-b ${borderTone}`}>
+        <div className="aspect-[2/1] w-full overflow-hidden border-b border-border">
           {/* eslint-disable-next-line @next/next/no-img-element -- animated GIF must not go through Next's image optimizer */}
           <img
             src={media.src}
@@ -141,13 +129,13 @@ export default function ProjectCard({
         {/* Header row */}
         <div className="flex items-start justify-between gap-3 mb-2.5">
           <div className="flex items-baseline gap-2.5 flex-wrap">
-            <span className={`font-body text-xs ${mutedText} tabular-nums`}>
+            <span className="font-body text-xs text-muted tabular-nums">
               {String(rank).padStart(2, "0")}
             </span>
-            <h3 className="font-body font-semibold text-[15px] leading-snug">
+            <h3 className="font-body font-semibold text-[15px] leading-snug text-ink">
               {title}
             </h3>
-            <span className={`font-body text-[11px] px-2 py-0.5 rounded-full border ${featured ? "border-white/25 text-on-accent/80" : "border-border text-muted"}`}>
+            <span className="font-body text-[11px] px-2 py-0.5 rounded-full border border-border text-muted">
               {type}
             </span>
           </div>
@@ -160,7 +148,7 @@ export default function ProjectCard({
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="View source on GitHub"
-                  className={`flex items-center justify-center w-7 h-7 rounded-full border transition-colors ${linkIconTone}`}
+                  className="flex items-center justify-center w-7 h-7 rounded-full border border-border text-muted hover:border-ink hover:text-ink transition-colors"
                 >
                   <GithubIcon />
                 </a>
@@ -171,7 +159,7 @@ export default function ProjectCard({
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="View live demo"
-                  className={`flex items-center justify-center w-7 h-7 rounded-full border transition-colors ${linkIconTone}`}
+                  className="flex items-center justify-center w-7 h-7 rounded-full border border-border text-muted hover:border-ink hover:text-ink transition-colors"
                 >
                   <ExternalLinkIcon />
                 </a>
@@ -181,14 +169,14 @@ export default function ProjectCard({
         </div>
 
         {/* One-liner */}
-        <p className={`font-body text-sm leading-relaxed mb-3 ${featured ? "text-on-accent/90" : "text-ink"}`}>
+        <p className="font-body text-sm leading-relaxed mb-3 text-ink">
           {oneLiner}
         </p>
 
         {/* Bullets */}
         <ul className="space-y-1.5 mb-3">
           {bullets.map((b, i) => (
-            <li key={i} className={`font-body text-sm ${mutedText} flex gap-2`}>
+            <li key={i} className="font-body text-sm text-muted flex gap-2">
               <CheckIcon />
               <span>{b}</span>
             </li>
@@ -196,29 +184,27 @@ export default function ProjectCard({
         </ul>
 
         {demoNote && (
-          <p className={`font-body text-xs italic mb-3 ${mutedText}`}>{demoNote}</p>
+          <p className="font-body text-xs italic mb-3 text-muted">{demoNote}</p>
         )}
 
         {tryItYourself && (
-          <div className={`rounded-[4px] border ${featured ? "border-white/20 bg-white/5" : "border-border bg-card-alt"} p-3 mb-3`}>
-            <p className={`font-body text-[11px] uppercase tracking-[0.08em] font-medium mb-2 ${mutedText}`}>
+          <div className="rounded-[4px] border border-border bg-card-alt p-3 mb-3">
+            <p className="font-body text-[11px] uppercase tracking-[0.08em] font-medium mb-2 text-muted">
               Try it yourself — live manager login
             </p>
-            <div className={`flex flex-wrap items-center gap-x-4 gap-y-1 font-body text-xs mb-3 ${featured ? "text-on-accent" : "text-ink"}`}>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 font-body text-xs mb-3 text-ink">
               <span>
-                <span className={mutedText}>Email:</span> {tryItYourself.email}
+                <span className="text-muted">Email:</span> {tryItYourself.email}
               </span>
               <span>
-                <span className={mutedText}>Password:</span> {tryItYourself.password}
+                <span className="text-muted">Password:</span> {tryItYourself.password}
               </span>
             </div>
             <a
               href={tryItYourself.url}
               target="_blank"
               rel="noopener noreferrer"
-              className={`inline-flex items-center gap-1.5 font-body text-sm font-medium px-4 py-[7px] rounded-3xl shadow-action transition-colors ${
-                featured ? "bg-white text-accent hover:bg-white/90" : "bg-accent text-on-accent hover:bg-accent-hover"
-              }`}
+              className="inline-flex items-center gap-1.5 font-body text-sm font-medium px-4 py-[7px] rounded-3xl bg-accent text-on-accent hover:bg-accent-hover transition-colors"
             >
               Open live manager dashboard <ExternalLinkIcon />
             </a>
@@ -230,7 +216,7 @@ export default function ProjectCard({
           {tech.map((t) => (
             <span
               key={t.label}
-              className={`font-body text-[11px] px-2.5 py-1 rounded-full ${pillTone}`}
+              className="font-body text-[11px] px-2.5 py-1 rounded-full bg-card-alt text-ink"
             >
               {t.label}
             </span>
@@ -241,9 +227,7 @@ export default function ProjectCard({
         <button
           onClick={() => setExpanded((v) => !v)}
           aria-expanded={expanded}
-          className={`font-body text-sm font-medium transition-colors flex items-center gap-1.5 ${
-            featured ? "text-on-accent hover:text-on-accent/70" : "text-graphite hover:text-ink"
-          }`}
+          className="font-body text-sm font-medium transition-colors flex items-center gap-1.5 text-graphite hover:text-ink"
         >
           <ChevronIcon expanded={expanded} />
           {expanded ? "Collapse" : "Read more"}
@@ -252,10 +236,10 @@ export default function ProjectCard({
 
       {/* Expandable section */}
       {expanded && (
-        <div className={`border-t ${borderTone} ${featured ? "bg-black/15" : "bg-card-alt"} px-3 py-4 space-y-3.5`}>
+        <div className="border-t border-border bg-card-alt px-3 py-4 space-y-3.5">
           {archDiagram && (
             <div>
-              <h4 className={`font-body text-[11px] uppercase tracking-[0.08em] mb-2 ${mutedText}`}>
+              <h4 className="font-body text-[11px] uppercase tracking-[0.08em] mb-2 text-muted">
                 Architecture
               </h4>
               {archDiagram}
@@ -263,45 +247,45 @@ export default function ProjectCard({
           )}
 
           <div>
-            <h4 className={`font-body text-[11px] uppercase tracking-[0.08em] mb-1 ${mutedText}`}>
+            <h4 className="font-body text-[11px] uppercase tracking-[0.08em] mb-1 text-muted">
               Problem
             </h4>
-            <p className="font-body text-sm leading-relaxed">{problem}</p>
+            <p className="font-body text-sm leading-relaxed text-ink">{problem}</p>
           </div>
 
           <div>
-            <h4 className={`font-body text-[11px] uppercase tracking-[0.08em] mb-1 ${mutedText}`}>
+            <h4 className="font-body text-[11px] uppercase tracking-[0.08em] mb-1 text-muted">
               Contribution
             </h4>
-            <p className="font-body text-sm leading-relaxed">{contribution}</p>
+            <p className="font-body text-sm leading-relaxed text-ink">{contribution}</p>
           </div>
 
           <div>
-            <h4 className={`font-body text-[11px] uppercase tracking-[0.08em] mb-1 ${mutedText}`}>
+            <h4 className="font-body text-[11px] uppercase tracking-[0.08em] mb-1 text-muted">
               Challenges
             </h4>
-            <p className="font-body text-sm leading-relaxed">{challenges}</p>
+            <p className="font-body text-sm leading-relaxed text-ink">{challenges}</p>
           </div>
 
           <div>
-            <h4 className={`font-body text-[11px] uppercase tracking-[0.08em] mb-1 ${mutedText}`}>
+            <h4 className="font-body text-[11px] uppercase tracking-[0.08em] mb-1 text-muted">
               Solution
             </h4>
-            <p className="font-body text-sm leading-relaxed">{solution}</p>
+            <p className="font-body text-sm leading-relaxed text-ink">{solution}</p>
           </div>
 
           <div>
-            <h4 className={`font-body text-[11px] uppercase tracking-[0.08em] mb-1 ${mutedText}`}>
+            <h4 className="font-body text-[11px] uppercase tracking-[0.08em] mb-1 text-muted">
               Results
             </h4>
-            <p className="font-body text-sm leading-relaxed">{results}</p>
+            <p className="font-body text-sm leading-relaxed text-ink">{results}</p>
           </div>
 
           <div>
-            <h4 className={`font-body text-[11px] uppercase tracking-[0.08em] mb-1 ${mutedText}`}>
+            <h4 className="font-body text-[11px] uppercase tracking-[0.08em] mb-1 text-muted">
               Demonstrates
             </h4>
-            <p className="font-body text-sm leading-relaxed">{demonstrates}</p>
+            <p className="font-body text-sm leading-relaxed text-ink">{demonstrates}</p>
           </div>
         </div>
       )}

@@ -101,7 +101,6 @@ const projects = [
     rank: 1,
     title: "79 Nails & Hair — Production Booking Platform",
     type: "Personal" as const,
-    featured: true,
     media: {
       type: "gif" as const,
       src: "/projects/79-nails-and-hair/demo.gif",
@@ -376,13 +375,11 @@ const projects = [
 
 // ─── Skills data ──────────────────────────────────────────────────────────────
 // Card fills rotate through the fixed 5-color accent deck — one entry per
-// category, matching the design reference's "Accent Card System."
+// Simple, uniform cards — no color-coding by category.
 const skillGroups = [
   {
     category: "Languages",
     skills: ["Python", "JavaScript", "SQL", "C++", "C#"],
-    bg: "bg-iris",
-    text: "text-white",
   },
   {
     category: "ML & Data",
@@ -397,8 +394,6 @@ const skillGroups = [
       "Anthropic Claude API",
       "OpenAI GPT-4o-mini",
     ],
-    bg: "bg-orchid",
-    text: "text-white",
   },
   {
     category: "Web & Backend",
@@ -415,8 +410,6 @@ const skillGroups = [
       "Tailwind CSS",
       "Vite",
     ],
-    bg: "bg-wine",
-    text: "text-white",
   },
   {
     category: "Tools & Platforms",
@@ -436,8 +429,6 @@ const skillGroups = [
       "ffmpeg",
       "Jupyter Notebook",
     ],
-    bg: "bg-coral",
-    text: "text-white",
   },
   {
     category: "Process",
@@ -446,8 +437,6 @@ const skillGroups = [
       "Iterative Development (Inception–Transition)",
       "Team-Based Software Process",
     ],
-    bg: "bg-lime",
-    text: "text-ink",
   },
 ];
 
@@ -512,7 +501,7 @@ export default function Home() {
             </h1>
 
             <p
-              className="font-heading italic font-medium text-xl sm:text-[23px] text-muted mb-4 leading-snug opacity-0 animate-[fadeUp_0.6s_ease-out_0.3s_forwards]"
+              className="font-body font-medium text-lg sm:text-xl text-ink mb-4 leading-snug opacity-0 animate-[fadeUp_0.6s_ease-out_0.3s_forwards]"
             >
               Building full-stack and AI-powered applications
             </p>
@@ -531,7 +520,7 @@ export default function Home() {
               <a
                 href="/resumes/Finn-Nguyen-Resume-Software-Engineer.pdf"
                 download
-                className="font-body text-sm font-medium px-5 py-[7px] rounded-3xl bg-accent text-on-accent shadow-action hover:bg-accent-hover transition-colors"
+                className="font-body text-sm font-medium px-5 py-[7px] rounded-3xl bg-accent text-on-accent hover:bg-accent-hover transition-colors"
               >
                 Download Resume
               </a>
@@ -579,31 +568,31 @@ export default function Home() {
             className="hidden lg:block opacity-0 animate-[fadeUp_0.6s_ease-out_0.35s_forwards]"
             aria-hidden
           >
-            <div className="w-72 rounded-[4px] bg-surface-dark text-on-surface-dark p-5 shadow-[0_10px_20px_rgba(0,0,0,0.15)]">
+            <div className="w-72 rounded-[4px] border border-border bg-card p-5">
               <div className="flex items-center gap-2 mb-6">
                 <span className="relative flex w-2 h-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-60" />
-                  <span className="relative inline-flex rounded-full w-2 h-2 bg-white" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-50" />
+                  <span className="relative inline-flex rounded-full w-2 h-2 bg-accent" />
                 </span>
-                <span className="font-body text-xs text-white/70">
+                <span className="font-body text-xs text-muted">
                   Open to full-time roles
                 </span>
               </div>
 
               <PipelineDiagram />
 
-              <div className="mt-6 pt-5 border-t border-white/15 space-y-2.5">
+              <div className="mt-6 pt-5 border-t border-border space-y-2.5">
                 <div className="flex justify-between font-body text-xs">
-                  <span className="text-white/60">Lighthouse a11y score</span>
-                  <span className="text-white font-medium">100/100</span>
+                  <span className="text-muted">Lighthouse a11y score</span>
+                  <span className="text-ink font-medium">100/100</span>
                 </div>
                 <div className="flex justify-between font-body text-xs">
-                  <span className="text-white/60">Automated tests written</span>
-                  <span className="text-white font-medium">79+</span>
+                  <span className="text-muted">Automated tests written</span>
+                  <span className="text-ink font-medium">79+</span>
                 </div>
                 <div className="flex justify-between font-body text-xs">
-                  <span className="text-white/60">Production apps shipped</span>
-                  <span className="text-white font-medium">2</span>
+                  <span className="text-muted">Production apps shipped</span>
+                  <span className="text-ink font-medium">2</span>
                 </div>
               </div>
             </div>
@@ -738,30 +727,26 @@ export default function Home() {
         />
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {skillGroups.map((group) => {
-            const pillClass =
-              group.text === "text-white" ? "bg-white/15 text-white" : "bg-ink/10 text-ink";
-            return (
-              <div
-                key={group.category}
-                className={`rounded-[4px] p-4 ${group.bg} ${group.text}`}
-              >
-                <h3 className="font-body text-xs uppercase tracking-[0.08em] font-medium mb-3 opacity-80">
-                  {group.category}
-                </h3>
-                <div className="flex flex-wrap gap-1.5">
-                  {group.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className={`font-body text-[11px] px-2.5 py-1 rounded-full ${pillClass}`}
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
+          {skillGroups.map((group) => (
+            <div
+              key={group.category}
+              className="rounded-[4px] border border-border bg-card p-4"
+            >
+              <h3 className="font-body text-xs uppercase tracking-[0.08em] font-medium mb-3 text-muted">
+                {group.category}
+              </h3>
+              <div className="flex flex-wrap gap-1.5">
+                {group.skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="font-body text-[11px] px-2.5 py-1 rounded-full bg-card-alt text-ink"
+                  >
+                    {skill}
+                  </span>
+                ))}
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </section>
 
@@ -895,7 +880,7 @@ export default function Home() {
             <div className="flex flex-wrap gap-3">
               <a
                 href="mailto:Finnnguyen93@gmail.com"
-                className="font-body text-sm font-medium px-5 py-[7px] rounded-3xl bg-accent text-on-accent shadow-action hover:bg-accent-hover transition-colors"
+                className="font-body text-sm font-medium px-5 py-[7px] rounded-3xl bg-accent text-on-accent hover:bg-accent-hover transition-colors"
               >
                 Email me
               </a>

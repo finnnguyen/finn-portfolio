@@ -110,7 +110,7 @@ export default function Nav() {
             <a
               href="/resumes/Finn-Nguyen-Resume-Software-Engineer.pdf"
               download
-              className="font-body text-sm font-medium px-4 py-[7px] rounded-3xl bg-accent text-on-accent shadow-action hover:bg-accent-hover transition-colors"
+              className="font-body text-sm font-medium px-4 py-[7px] rounded-3xl bg-accent text-on-accent hover:bg-accent-hover transition-colors"
             >
               Resume
             </a>
@@ -161,7 +161,7 @@ export default function Nav() {
               <a
                 href="/resumes/Finn-Nguyen-Resume-Software-Engineer.pdf"
                 download
-                className="font-body text-sm font-medium inline-block px-4 py-[7px] rounded-3xl bg-accent text-on-accent shadow-action mt-1"
+                className="font-body text-sm font-medium inline-block px-4 py-[7px] rounded-3xl bg-accent text-on-accent hover:bg-accent-hover transition-colors mt-1"
               >
                 Resume
               </a>
