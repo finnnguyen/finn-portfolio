@@ -3,12 +3,6 @@ import PipelineDiagram from "./components/PipelineDiagram";
 import ProjectCard from "./components/ProjectCard";
 import SectionHeader from "./components/SectionHeader";
 import {
-  UserIcon,
-  FolderIcon,
-  RocketIcon,
-  CodeIcon,
-  BriefcaseIcon,
-  CapIcon,
   MailIcon,
   GithubIcon,
   LinkedinIcon,
@@ -29,14 +23,14 @@ function EcommerceArchDiagram() {
       {layers.map((layer, i) => (
         <div key={layer.label} className="flex flex-col items-start">
           <div className="flex items-center gap-3">
-            <div className="w-2 h-2 rounded-full bg-accent/50 shrink-0" />
+            <div className="w-2 h-2 rounded-full bg-current/40 shrink-0" />
             <div>
-              <span className="font-mono text-xs text-accent font-medium">{layer.label}</span>
-              <span className="font-mono text-xs text-muted ml-2">— {layer.note}</span>
+              <span className="font-body text-xs font-medium">{layer.label}</span>
+              <span className="font-body text-xs opacity-60 ml-2">— {layer.note}</span>
             </div>
           </div>
           {i < layers.length - 1 && (
-            <div className="ml-[3.5px] h-5 w-px border-l border-dashed border-accent/30" />
+            <div className="ml-[3.5px] h-5 w-px border-l border-dashed border-current/25" />
           )}
         </div>
       ))}
@@ -57,14 +51,14 @@ function SalonArchDiagram() {
       {layers.map((layer, i) => (
         <div key={layer.label} className="flex flex-col items-start">
           <div className="flex items-center gap-3">
-            <div className="w-2 h-2 rounded-full bg-accent/50 shrink-0" />
+            <div className="w-2 h-2 rounded-full bg-current/40 shrink-0" />
             <div>
-              <span className="font-mono text-xs text-accent font-medium">{layer.label}</span>
-              <span className="font-mono text-xs text-muted ml-2">— {layer.note}</span>
+              <span className="font-body text-xs font-medium">{layer.label}</span>
+              <span className="font-body text-xs opacity-60 ml-2">— {layer.note}</span>
             </div>
           </div>
           {i < layers.length - 1 && (
-            <div className="ml-[3.5px] h-5 w-px border-l border-dashed border-accent/30" />
+            <div className="ml-[3.5px] h-5 w-px border-l border-dashed border-current/25" />
           )}
         </div>
       ))}
@@ -86,14 +80,14 @@ function TurnRotationArchDiagram() {
       {layers.map((layer, i) => (
         <div key={layer.label} className="flex flex-col items-start">
           <div className="flex items-center gap-3">
-            <div className="w-2 h-2 rounded-full bg-accent/50 shrink-0" />
+            <div className="w-2 h-2 rounded-full bg-current/40 shrink-0" />
             <div>
-              <span className="font-mono text-xs text-accent font-medium">{layer.label}</span>
-              <span className="font-mono text-xs text-muted ml-2">— {layer.note}</span>
+              <span className="font-body text-xs font-medium">{layer.label}</span>
+              <span className="font-body text-xs opacity-60 ml-2">— {layer.note}</span>
             </div>
           </div>
           {i < layers.length - 1 && (
-            <div className="ml-[3.5px] h-5 w-px border-l border-dashed border-accent/30" />
+            <div className="ml-[3.5px] h-5 w-px border-l border-dashed border-current/25" />
           )}
         </div>
       ))}
@@ -107,6 +101,7 @@ const projects = [
     rank: 1,
     title: "79 Nails & Hair — Production Booking Platform",
     type: "Personal" as const,
+    featured: true,
     media: {
       type: "gif" as const,
       src: "/projects/79-nails-and-hair/demo.gif",
@@ -380,10 +375,14 @@ const projects = [
 ];
 
 // ─── Skills data ──────────────────────────────────────────────────────────────
+// Card fills rotate through the fixed 5-color accent deck — one entry per
+// category, matching the design reference's "Accent Card System."
 const skillGroups = [
   {
     category: "Languages",
     skills: ["Python", "JavaScript", "SQL", "C++", "C#"],
+    bg: "bg-iris",
+    text: "text-white",
   },
   {
     category: "ML & Data",
@@ -398,6 +397,8 @@ const skillGroups = [
       "Anthropic Claude API",
       "OpenAI GPT-4o-mini",
     ],
+    bg: "bg-orchid",
+    text: "text-white",
   },
   {
     category: "Web & Backend",
@@ -414,6 +415,8 @@ const skillGroups = [
       "Tailwind CSS",
       "Vite",
     ],
+    bg: "bg-wine",
+    text: "text-white",
   },
   {
     category: "Tools & Platforms",
@@ -433,6 +436,8 @@ const skillGroups = [
       "ffmpeg",
       "Jupyter Notebook",
     ],
+    bg: "bg-coral",
+    text: "text-white",
   },
   {
     category: "Process",
@@ -441,6 +446,8 @@ const skillGroups = [
       "Iterative Development (Inception–Transition)",
       "Team-Based Software Process",
     ],
+    bg: "bg-lime",
+    text: "text-ink",
   },
 ];
 
@@ -475,7 +482,7 @@ export default function Home() {
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section
         id="top"
-        className="min-h-screen flex flex-col justify-center px-6 pt-24 pb-16 max-w-5xl mx-auto"
+        className="min-h-screen flex flex-col justify-center px-4 pt-24 pb-16 max-w-[1200px] mx-auto"
         aria-label="Introduction"
       >
         <div className="grid lg:grid-cols-[1fr_auto] gap-14 items-center">
@@ -484,34 +491,34 @@ export default function Home() {
             <div
               className="flex flex-wrap gap-2 mb-6 opacity-0 animate-[fadeUp_0.6s_ease-out_forwards]"
             >
-              <span className="font-mono text-xs px-3 py-1 rounded-full border border-accent/30 bg-accent-soft text-accent">
+              <span className="font-body text-xs px-3 py-1 rounded-full border border-border text-muted">
                 Software Engineer
               </span>
-              <span className="font-mono text-xs px-3 py-1 rounded-full border border-border text-muted">
+              <span className="font-body text-xs px-3 py-1 rounded-full border border-border text-muted">
                 Fullerton, CA
               </span>
             </div>
 
             <p
-              className="font-mono text-xs tracking-[0.2em] text-muted uppercase mb-3 opacity-0 animate-[fadeUp_0.6s_ease-out_0.1s_forwards]"
+              className="font-body text-[11px] tracking-[0.15em] text-muted uppercase mb-3 opacity-0 animate-[fadeUp_0.6s_ease-out_0.1s_forwards]"
             >
               Hello, I&apos;m
             </p>
 
             <h1
-              className="font-heading font-bold text-4xl sm:text-5xl md:text-6xl text-ink leading-tight tracking-tight mb-4 opacity-0 animate-[fadeUp_0.6s_ease-out_0.2s_forwards]"
+              className="font-heading font-semibold text-5xl sm:text-6xl lg:text-[58px] text-ink leading-[1.05] tracking-[-0.02em] mb-4 opacity-0 animate-[fadeUp_0.6s_ease-out_0.2s_forwards]"
             >
-              Finn Nguyen<span className="text-accent">.</span>
+              Finn Nguyen.
             </h1>
 
             <p
-              className="font-heading font-medium text-xl sm:text-2xl text-accent mb-4 leading-snug opacity-0 animate-[fadeUp_0.6s_ease-out_0.3s_forwards]"
+              className="font-heading italic font-medium text-xl sm:text-[23px] text-muted mb-4 leading-snug opacity-0 animate-[fadeUp_0.6s_ease-out_0.3s_forwards]"
             >
               Building full-stack and AI-powered applications
             </p>
 
             <p
-              className="font-body text-base sm:text-lg text-muted mb-8 leading-relaxed max-w-xl opacity-0 animate-[fadeUp_0.6s_ease-out_0.4s_forwards]"
+              className="font-body text-base text-muted mb-8 leading-relaxed max-w-xl opacity-0 animate-[fadeUp_0.6s_ease-out_0.4s_forwards]"
             >
               Focused on end-to-end delivery — from data pipelines and model evaluation to
               shipped, deployed products.
@@ -524,13 +531,13 @@ export default function Home() {
               <a
                 href="/resumes/Finn-Nguyen-Resume-Software-Engineer.pdf"
                 download
-                className="font-body text-sm font-medium px-5 py-2.5 rounded-full bg-gradient-to-r from-accent to-accent-strong text-white shadow-sm hover:shadow-lg hover:brightness-105 transition-all"
+                className="font-body text-sm font-medium px-5 py-[7px] rounded-3xl bg-accent text-on-accent shadow-action hover:bg-accent-hover transition-colors"
               >
                 Download Resume
               </a>
               <a
                 href="#projects"
-                className="font-body text-sm font-medium px-5 py-2.5 rounded-full border border-border text-ink hover:border-accent hover:text-accent transition-colors"
+                className="font-body text-sm font-medium px-5 py-[7px] rounded-3xl border border-border text-ink hover:border-ink transition-colors"
               >
                 Explore Projects
               </a>
@@ -544,7 +551,7 @@ export default function Home() {
                 href="https://www.linkedin.com/in/finn-nguyen"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 font-body text-sm text-muted hover:text-accent transition-colors"
+                className="flex items-center gap-1.5 font-body text-sm text-muted hover:text-ink transition-colors"
               >
                 <LinkedinIcon /> LinkedIn
               </a>
@@ -553,53 +560,50 @@ export default function Home() {
                 href="https://github.com/finnnguyen"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 font-body text-sm text-muted hover:text-accent transition-colors"
+                className="flex items-center gap-1.5 font-body text-sm text-muted hover:text-ink transition-colors"
               >
                 <GithubIcon /> GitHub
               </a>
               <span className="text-border" aria-hidden>&middot;</span>
               <a
                 href="mailto:Finnnguyen93@gmail.com"
-                className="flex items-center gap-1.5 font-body text-sm text-muted hover:text-accent transition-colors"
+                className="flex items-center gap-1.5 font-body text-sm text-muted hover:text-ink transition-colors"
               >
                 <MailIcon className="w-4 h-4" /> Email
               </a>
             </div>
           </div>
 
-          {/* Illustration card */}
+          {/* Trending-topic-style card */}
           <div
             className="hidden lg:block opacity-0 animate-[fadeUp_0.6s_ease-out_0.35s_forwards]"
             aria-hidden
           >
-            <div className="relative w-72">
-              <div className="absolute -inset-4 rounded-[2rem] bg-accent/10 blur-2xl -z-10" />
-              <div className="rounded-3xl border-2 border-accent/25 bg-card shadow-xl p-6">
-                <div className="flex items-center gap-2 mb-6">
-                  <span className="relative flex w-2.5 h-2.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-60" />
-                    <span className="relative inline-flex rounded-full w-2.5 h-2.5 bg-accent" />
-                  </span>
-                  <span className="font-mono text-xs text-accent">
-                    Open to full-time roles
-                  </span>
+            <div className="w-72 rounded-[4px] bg-surface-dark text-on-surface-dark p-5 shadow-[0_10px_20px_rgba(0,0,0,0.15)]">
+              <div className="flex items-center gap-2 mb-6">
+                <span className="relative flex w-2 h-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-60" />
+                  <span className="relative inline-flex rounded-full w-2 h-2 bg-white" />
+                </span>
+                <span className="font-body text-xs text-white/70">
+                  Open to full-time roles
+                </span>
+              </div>
+
+              <PipelineDiagram />
+
+              <div className="mt-6 pt-5 border-t border-white/15 space-y-2.5">
+                <div className="flex justify-between font-body text-xs">
+                  <span className="text-white/60">Lighthouse a11y score</span>
+                  <span className="text-white font-medium">100/100</span>
                 </div>
-
-                <PipelineDiagram />
-
-                <div className="mt-6 pt-5 border-t border-border space-y-2.5">
-                  <div className="flex justify-between font-mono text-xs">
-                    <span className="text-muted">Lighthouse a11y score</span>
-                    <span className="text-ink font-medium">100/100</span>
-                  </div>
-                  <div className="flex justify-between font-mono text-xs">
-                    <span className="text-muted">Automated tests written</span>
-                    <span className="text-ink font-medium">79+</span>
-                  </div>
-                  <div className="flex justify-between font-mono text-xs">
-                    <span className="text-muted">Production apps shipped</span>
-                    <span className="text-ink font-medium">2</span>
-                  </div>
+                <div className="flex justify-between font-body text-xs">
+                  <span className="text-white/60">Automated tests written</span>
+                  <span className="text-white font-medium">79+</span>
+                </div>
+                <div className="flex justify-between font-body text-xs">
+                  <span className="text-white/60">Production apps shipped</span>
+                  <span className="text-white font-medium">2</span>
                 </div>
               </div>
             </div>
@@ -608,7 +612,7 @@ export default function Home() {
 
         {/* Scroll indicator */}
         <div className="hidden sm:flex flex-col items-center gap-2 mt-16 mx-auto text-muted opacity-0 animate-[fadeUp_0.6s_ease-out_0.7s_forwards]">
-          <span className="font-mono text-xs uppercase tracking-wider">Scroll to explore</span>
+          <span className="font-body text-xs uppercase tracking-wider">Scroll to explore</span>
           <span className="animate-[bounceSlow_2.2s_ease-in-out_infinite]">
             <ArrowDownIcon />
           </span>
@@ -618,11 +622,11 @@ export default function Home() {
       {/* ── ABOUT ────────────────────────────────────────────────────────── */}
       <section
         id="about"
-        className="py-20 px-6 max-w-5xl mx-auto border-t border-border"
+        className="py-16 px-4 max-w-[1200px] mx-auto border-t border-border"
         aria-label="About"
       >
-        <SectionHeader icon={<UserIcon />} title="About" />
-        <div className="max-w-2xl bg-card border border-border rounded-2xl p-6 space-y-4">
+        <SectionHeader title="About" />
+        <div className="max-w-2xl bg-card border border-border rounded-[4px] p-5 space-y-4">
           <p className="font-body text-ink leading-relaxed">
             I&apos;m a Computer Science graduate (Cal State Fullerton, May 2026) who likes finishing what I
             start — I&apos;ve taken two production systems (a salon booking platform and a staff rotation
@@ -643,11 +647,10 @@ export default function Home() {
       {/* ── FEATURED PROJECTS ────────────────────────────────────────────── */}
       <section
         id="projects"
-        className="py-20 px-6 max-w-5xl mx-auto border-t border-border"
+        className="py-16 px-4 max-w-[1200px] mx-auto border-t border-border"
         aria-label="Featured projects"
       >
         <SectionHeader
-          icon={<FolderIcon />}
           title="Featured Projects"
           subtitle="Ranked by hiring value. Expand any card for the full technical breakdown."
         />
@@ -660,20 +663,20 @@ export default function Home() {
 
         {/* Other projects */}
         <div className="mt-8 pt-6 border-t border-border">
-          <h3 className="font-mono text-xs text-muted uppercase tracking-wider mb-4">
+          <h3 className="font-body text-xs text-muted uppercase tracking-wider mb-4">
             Also on GitHub
           </h3>
-          <div className="bg-card border border-border rounded-2xl p-5">
+          <div className="bg-card border border-border rounded-[4px] p-5">
             <div className="flex flex-wrap items-baseline gap-2 mb-1">
               <a
                 href="https://github.com/finnnguyen"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-body text-sm font-medium text-accent underline underline-offset-2 hover:text-accent-hover"
+                className="font-body text-sm font-medium text-ink underline underline-offset-2 hover:text-graphite"
               >
                 GitHub Repository Data Analysis
               </a>
-              <span className="font-mono text-xs text-muted">Personal · Python, pandas, Matplotlib · 2026</span>
+              <span className="font-body text-xs text-muted">Personal · Python, pandas, Matplotlib · 2026</span>
             </div>
             <p className="font-body text-sm text-muted">
               EDA across 215,000+ repositories — language trends, star/fork patterns, and AI-repo growth over time.
@@ -685,20 +688,20 @@ export default function Home() {
       {/* ── FACULTY PROJECT (UPCOMING) ───────────────────────────────────── */}
       <section
         id="faculty-project"
-        className="py-20 px-6 max-w-5xl mx-auto border-t border-border"
+        className="py-16 px-4 max-w-[1200px] mx-auto border-t border-border"
         aria-label="Upcoming faculty-sponsored project"
       >
-        <SectionHeader icon={<RocketIcon />} title="Upcoming" />
+        <SectionHeader title="Upcoming" />
 
         <article
-          className="border-2 border-dashed border-accent/30 rounded-2xl p-6 bg-accent-soft max-w-2xl"
+          className="border border-dashed border-border rounded-[4px] p-5 bg-card-alt max-w-2xl"
           aria-label="Faculty-Sponsored Applied AI Project — Starting Fall 2026"
         >
           <div className="flex items-center gap-3 mb-4 flex-wrap">
-            <h3 className="font-heading font-semibold text-ink text-lg">
+            <h3 className="font-body font-semibold text-ink text-base">
               Faculty-Sponsored Applied AI Project
             </h3>
-            <span className="font-mono text-xs px-2.5 py-0.5 rounded-full border border-accent/30 text-accent bg-card">
+            <span className="font-body text-xs px-2.5 py-0.5 rounded-full border border-border text-muted bg-card">
               Fall 2026 &middot; Client Confirmed
             </span>
           </div>
@@ -726,75 +729,77 @@ export default function Home() {
       {/* ── SKILLS ───────────────────────────────────────────────────────── */}
       <section
         id="skills"
-        className="py-20 px-6 max-w-5xl mx-auto border-t border-border"
+        className="py-16 px-4 max-w-[1200px] mx-auto border-t border-border"
         aria-label="Technical skills"
       >
         <SectionHeader
-          icon={<CodeIcon />}
           title="Technical Skills"
           subtitle="Tools I've used to build the projects above — not a wishlist."
         />
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {skillGroups.map((group) => (
-            <div
-              key={group.category}
-              className="bg-card border border-border rounded-2xl p-5 hover:border-accent/40 hover:shadow-md transition-all duration-200"
-            >
-              <h3 className="font-mono text-xs text-muted uppercase tracking-wider mb-3 flex items-center gap-2">
-                <FolderIcon className="w-4 h-4 text-accent" />
-                {group.category}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {group.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="font-mono text-[11px] px-2.5 py-1 rounded-full border border-accent/25 bg-accent-soft text-accent"
-                  >
-                    {skill}
-                  </span>
-                ))}
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {skillGroups.map((group) => {
+            const pillClass =
+              group.text === "text-white" ? "bg-white/15 text-white" : "bg-ink/10 text-ink";
+            return (
+              <div
+                key={group.category}
+                className={`rounded-[4px] p-4 ${group.bg} ${group.text}`}
+              >
+                <h3 className="font-body text-xs uppercase tracking-[0.08em] font-medium mb-3 opacity-80">
+                  {group.category}
+                </h3>
+                <div className="flex flex-wrap gap-1.5">
+                  {group.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className={`font-body text-[11px] px-2.5 py-1 rounded-full ${pillClass}`}
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
       {/* ── EXPERIENCE ───────────────────────────────────────────────────── */}
       <section
         id="experience"
-        className="py-20 px-6 max-w-5xl mx-auto border-t border-border"
+        className="py-16 px-4 max-w-[1200px] mx-auto border-t border-border"
         aria-label="Work experience"
       >
-        <SectionHeader icon={<BriefcaseIcon />} title="Experience" />
+        <SectionHeader title="Experience" />
 
-        <div className="max-w-2xl bg-card border border-border rounded-2xl p-6 hover:border-accent/40 hover:shadow-md transition-all duration-200">
+        <div className="max-w-2xl bg-card border border-border rounded-[4px] p-5 hover:shadow-[0_10px_20px_rgba(0,0,0,0.05)] transition-shadow duration-200">
           <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
-            <h3 className="font-heading font-semibold text-ink">
+            <h3 className="font-body font-semibold text-ink">
               Manager
             </h3>
-            <span className="font-mono text-xs text-muted">Aug 2026 – Present</span>
+            <span className="font-body text-xs text-muted">Aug 2026 – Present</span>
           </div>
           <p className="font-body text-sm text-muted mb-4">
             79 Nails and Hair &middot; Promoted from Assistant Manager (2023 – Aug 2026)
           </p>
           <ul className="space-y-1.5 mb-5">
             <li className="font-body text-sm text-muted flex gap-2">
-              <span className="text-accent"><CheckIcon /></span>
+              <span className="text-ink"><CheckIcon /></span>
               <span>
                 Own full daily operations for a high-traffic salon end-to-end — staff rotation, cash
                 flow, customer complaints, staff supervision, and healthcare-grade cleanliness standards
               </span>
             </li>
             <li className="font-body text-sm text-muted flex gap-2">
-              <span className="text-accent"><CheckIcon /></span>
+              <span className="text-ink"><CheckIcon /></span>
               <span>
                 Trusted to operate independently, reporting to the owner only 2–3x/week since
                 promotion from Assistant Manager
               </span>
             </li>
             <li className="font-body text-sm text-muted flex gap-2">
-              <span className="text-accent"><CheckIcon /></span>
+              <span className="text-ink"><CheckIcon /></span>
               <span>
                 The same prioritization and communication skills carry into how I scope and ship
                 technical work
@@ -805,7 +810,7 @@ export default function Home() {
             {experienceTags.map((tag) => (
               <span
                 key={tag}
-                className="font-mono text-[11px] px-2.5 py-1 rounded-full bg-accent-soft text-accent border border-accent/20"
+                className="font-body text-[11px] px-2.5 py-1 rounded-full bg-card-alt text-ink"
               >
                 {tag}
               </span>
@@ -817,37 +822,37 @@ export default function Home() {
       {/* ── EDUCATION ────────────────────────────────────────────────────── */}
       <section
         id="education"
-        className="py-20 px-6 max-w-5xl mx-auto border-t border-border"
+        className="py-16 px-4 max-w-[1200px] mx-auto border-t border-border"
         aria-label="Education"
       >
-        <SectionHeader icon={<CapIcon />} title="Education" />
+        <SectionHeader title="Education" />
 
-        <div className="max-w-2xl bg-card border border-border rounded-2xl p-6 hover:border-accent/40 hover:shadow-md transition-all duration-200">
+        <div className="max-w-2xl bg-card border border-border rounded-[4px] p-5 hover:shadow-[0_10px_20px_rgba(0,0,0,0.05)] transition-shadow duration-200">
           <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
-            <h3 className="font-heading font-semibold text-ink">
+            <h3 className="font-body font-semibold text-ink">
               B.S. Computer Science
             </h3>
-            <span className="font-mono text-xs text-muted">May 2026</span>
+            <span className="font-body text-xs text-muted">May 2026</span>
           </div>
           <p className="font-body text-sm text-muted mb-4">
             California State University, Fullerton
           </p>
           <div className="flex flex-wrap gap-2 mb-5">
-            <span className="font-mono text-xs px-2.5 py-1 rounded-full bg-accent-soft text-accent border border-accent/20">
+            <span className="font-body text-xs px-2.5 py-1 rounded-full bg-card-alt text-ink">
               Dean&apos;s List — Fall 2025
             </span>
-            <span className="font-mono text-xs px-2.5 py-1 rounded-full bg-accent-soft text-accent border border-accent/20">
+            <span className="font-body text-xs px-2.5 py-1 rounded-full bg-card-alt text-ink">
               Dean&apos;s List — Spring 2026
             </span>
           </div>
-          <h4 className="font-mono text-[11px] text-muted uppercase tracking-wider mb-2">
+          <h4 className="font-body text-[11px] text-muted uppercase tracking-wider mb-2">
             Coursework
           </h4>
           <div className="flex flex-wrap gap-2">
             {coursework.map((course) => (
               <span
                 key={course}
-                className="font-mono text-[11px] px-2.5 py-1 rounded-full border border-border text-muted"
+                className="font-body text-[11px] px-2.5 py-1 rounded-full border border-border text-muted"
               >
                 {course}
               </span>
@@ -859,18 +864,17 @@ export default function Home() {
       {/* ── CONTACT / FOOTER ─────────────────────────────────────────────── */}
       <footer
         id="contact"
-        className="py-20 px-6 max-w-5xl mx-auto border-t border-border"
+        className="py-16 px-4 max-w-[1200px] mx-auto border-t border-border"
         aria-label="Contact and footer"
       >
         <SectionHeader
-          icon={<MailIcon />}
           title="Get in Touch"
           subtitle="Open to full-time roles in Software Engineering, Data, and AI/ML. Best reached by email."
         />
 
-        <div className="grid gap-6 lg:grid-cols-2">
-          <div className="bg-card border border-border rounded-2xl p-6">
-            <h3 className="font-heading font-semibold text-ink mb-1">
+        <div className="grid gap-5 lg:grid-cols-2">
+          <div className="bg-card border border-border rounded-[4px] p-5">
+            <h3 className="font-body font-semibold text-ink mb-1">
               Let&apos;s work together
             </h3>
             <p className="font-body text-sm text-muted mb-5">
@@ -883,7 +887,7 @@ export default function Home() {
                 "Referrals and introductions",
               ].map((item) => (
                 <li key={item} className="font-body text-sm text-ink flex gap-2">
-                  <span className="text-accent" aria-hidden>•</span>
+                  <span className="text-muted" aria-hidden>•</span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -891,7 +895,7 @@ export default function Home() {
             <div className="flex flex-wrap gap-3">
               <a
                 href="mailto:Finnnguyen93@gmail.com"
-                className="font-body text-sm font-medium px-5 py-2.5 rounded-full bg-gradient-to-r from-accent to-accent-strong text-white shadow-sm hover:shadow-lg hover:brightness-105 transition-all"
+                className="font-body text-sm font-medium px-5 py-[7px] rounded-3xl bg-accent text-on-accent shadow-action hover:bg-accent-hover transition-colors"
               >
                 Email me
               </a>
@@ -899,7 +903,7 @@ export default function Home() {
                 href="https://www.linkedin.com/in/finn-nguyen"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 font-body text-sm font-medium px-5 py-2.5 rounded-full border border-border text-ink hover:border-accent hover:text-accent transition-colors"
+                className="flex items-center gap-1.5 font-body text-sm font-medium px-5 py-[7px] rounded-3xl border border-border text-ink hover:border-ink transition-colors"
               >
                 <LinkedinIcon /> LinkedIn
               </a>
@@ -907,15 +911,15 @@ export default function Home() {
                 href="https://github.com/finnnguyen"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 font-body text-sm font-medium px-5 py-2.5 rounded-full border border-border text-ink hover:border-accent hover:text-accent transition-colors"
+                className="flex items-center gap-1.5 font-body text-sm font-medium px-5 py-[7px] rounded-3xl border border-border text-ink hover:border-ink transition-colors"
               >
                 <GithubIcon /> GitHub
               </a>
             </div>
           </div>
 
-          <div className="bg-card border border-border rounded-2xl p-6">
-            <h3 className="font-heading font-semibold text-ink mb-1">
+          <div className="bg-card border border-border rounded-[4px] p-5">
+            <h3 className="font-body font-semibold text-ink mb-1">
               Download Resume
             </h3>
             <p className="font-body text-sm text-muted mb-5">
@@ -927,7 +931,7 @@ export default function Home() {
                   key={file}
                   href={`/resumes/${file}`}
                   download
-                  className="flex items-center gap-1.5 font-body text-sm px-4 py-2 rounded-full border border-border text-ink hover:border-accent hover:text-accent transition-colors"
+                  className="flex items-center gap-1.5 font-body text-sm px-4 py-2 rounded-full border border-border text-ink hover:border-ink transition-colors"
                 >
                   <ArrowDownIcon className="w-3.5 h-3.5" />
                   {label}
@@ -938,10 +942,10 @@ export default function Home() {
         </div>
 
         <div className="border-t border-border pt-6 mt-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-          <p className="font-mono text-xs text-muted">
+          <p className="font-body text-xs text-muted">
             © {new Date().getFullYear()} Finn Nguyen
           </p>
-          <p className="font-mono text-xs text-muted">
+          <p className="font-body text-xs text-muted">
             Built with Next.js + Tailwind CSS · Deployed on Vercel
           </p>
         </div>

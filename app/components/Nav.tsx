@@ -60,10 +60,9 @@ function ThemeToggle() {
     <button
       onClick={toggle}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      className="flex items-center gap-1.5 font-body text-xs font-medium px-3 py-1.5 rounded-full border border-border text-ink hover:border-accent hover:text-accent transition-colors"
+      className="flex items-center justify-center w-8 h-8 rounded-full border border-border text-ink hover:border-ink transition-colors"
     >
       {isDark ? <MoonIcon /> : <SunIcon />}
-      <span className="hidden xs:inline">{isDark ? "Dark" : "Light"}</span>
     </button>
   );
 }
@@ -73,44 +72,35 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 20);
+    const handler = () => setScrolled(window.scrollY > 8);
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 border-b transition-shadow duration-200 ${
-        scrolled
-          ? "shadow-sm bg-card/95 backdrop-blur-sm border-border"
-          : "bg-bg border-transparent"
+      className={`fixed top-0 inset-x-0 z-50 bg-bg border-b transition-shadow duration-200 ${
+        scrolled ? "border-border shadow-[0_10px_20px_rgba(0,0,0,0.05)]" : "border-transparent"
       }`}
     >
       <nav
-        className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between"
+        className="max-w-[1200px] mx-auto px-4 h-16 flex items-center justify-between"
         aria-label="Primary navigation"
       >
-        <a href="#top" className="flex items-center gap-3 group">
-          <span className="flex items-center justify-center w-9 h-9 rounded-full border-2 border-accent/40 bg-accent-soft text-accent font-heading font-semibold text-xs group-hover:border-accent transition-colors shrink-0">
-            FN
-          </span>
-          <span className="flex flex-col leading-tight">
-            <span className="font-heading font-semibold text-ink text-sm">
-              Finn Nguyen
-            </span>
-            <span className="font-body text-[11px] text-muted">
-              Software Engineer &middot; Fullerton, CA
-            </span>
+        <a href="#top" className="flex items-center gap-2.5 group">
+          <span className="w-4 h-4 rounded-[3px] bg-ink shrink-0 rotate-45 group-hover:rotate-0 transition-transform duration-300" />
+          <span className="font-body font-semibold text-ink text-[15px] tracking-[-0.01em]">
+            Finn Nguyen
           </span>
         </a>
 
         {/* Desktop links */}
-        <ul className="hidden sm:flex items-center gap-6">
+        <ul className="hidden sm:flex items-center gap-8">
           {links.map((l) => (
             <li key={l.href}>
               <a
                 href={l.href}
-                className="font-body text-sm text-muted hover:text-accent transition-colors"
+                className="font-body text-[15px] font-medium text-muted hover:text-ink transition-colors"
               >
                 {l.label}
               </a>
@@ -120,7 +110,7 @@ export default function Nav() {
             <a
               href="/resumes/Finn-Nguyen-Resume-Software-Engineer.pdf"
               download
-              className="font-body text-sm px-4 py-1.5 rounded-full border border-accent text-accent hover:bg-accent hover:text-white transition-colors"
+              className="font-body text-sm font-medium px-4 py-[7px] rounded-3xl bg-accent text-on-accent shadow-action hover:bg-accent-hover transition-colors"
             >
               Resume
             </a>
@@ -134,7 +124,7 @@ export default function Nav() {
         <div className="flex items-center gap-2 sm:hidden">
           <ThemeToggle />
           <button
-            className="p-2 text-ink hover:text-accent transition-colors"
+            className="p-2 text-ink"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
@@ -154,14 +144,14 @@ export default function Nav() {
 
       {/* Mobile drawer */}
       {open && (
-        <div className="sm:hidden border-t border-border bg-card px-6 pb-4">
+        <div className="sm:hidden border-t border-border bg-bg px-4 pb-4">
           <ul className="flex flex-col gap-3 pt-4">
             {links.map((l) => (
               <li key={l.href}>
                 <a
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="font-body text-sm text-muted hover:text-accent transition-colors block"
+                  className="font-body text-[15px] font-medium text-muted hover:text-ink transition-colors block"
                 >
                   {l.label}
                 </a>
@@ -171,7 +161,7 @@ export default function Nav() {
               <a
                 href="/resumes/Finn-Nguyen-Resume-Software-Engineer.pdf"
                 download
-                className="font-body text-sm inline-block px-4 py-1.5 rounded-full border border-accent text-accent hover:bg-accent hover:text-white transition-colors mt-1"
+                className="font-body text-sm font-medium inline-block px-4 py-[7px] rounded-3xl bg-accent text-on-accent shadow-action mt-1"
               >
                 Resume
               </a>

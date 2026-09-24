@@ -8,47 +8,61 @@
   below actually changes rendered colors at runtime. `@theme inline`
   bakes literal values into the generated CSS instead and would break
   the dark-mode toggle.
+
+  Palette adapted from the Contra design reference (DESIGN.md): a flat
+  editorial white canvas where Charcoal is the only filled-action
+  color, hairline borders do the structural work, and a fixed 5-color
+  deck (Iris/Orchid/Wine/Coral/Lime) is reserved for category-card
+  fills only. The reference is light-only; the dark variant below
+  inverts the same relationships (Charcoal becomes a light fill on a
+  near-black canvas) to keep this site's existing theme toggle.
 */
 @theme {
-  --color-bg: #F5F8F7;
+  --color-bg: #FFFFFF;
   --color-card: #FFFFFF;
-  --color-card-alt: #F0F6F4;
-  --color-ink: #131A18;
-  --color-muted: #5C6B67;
-  --color-border: #E1EAE6;
-  --color-accent: #1F8F73;
-  --color-accent-hover: #17705A;
-  --color-accent-soft: #E7F5F0;
-  --color-accent-strong: #10B981;
-  --color-navy: #1F3864;
-  --color-navy-soft: #EDF1F7;
+  --color-card-alt: #F5F6F9;
+  --color-ink: #14171F;
+  --color-muted: #677084;
+  --color-fog: #9BA2B0;
+  --color-border: #E5E7EB;
+  --color-graphite: #373F51;
+  --color-accent: #222834;
+  --color-accent-hover: #171B24;
+  --color-on-accent: #FFFFFF;
+  --color-surface-dark: #14171F;
+  --color-on-surface-dark: #FFFFFF;
+
+  /* Fixed accent-card deck — same in both themes, card-fill only */
+  --color-iris: #6A57E3;
+  --color-orchid: #CD74DD;
+  --color-wine: #45192F;
+  --color-coral: #FF5A5E;
+  --color-lime: #F0FB96;
+}
+
+.dark {
+  --color-bg: #0B0D12;
+  --color-card: #12151B;
+  --color-card-alt: #161920;
+  --color-ink: #EDEFF3;
+  --color-muted: #9BA2B0;
+  --color-fog: #6B7280;
+  --color-border: #262A33;
+  --color-graphite: #B8BEC9;
+  --color-accent: #F5F6F9;
+  --color-accent-hover: #E2E4EA;
+  --color-on-accent: #14171F;
 }
 
 @theme inline {
-  --font-heading: var(--font-archivo);
-  --font-body: var(--font-ibm-plex-sans);
-  --font-mono: var(--font-ibm-plex-mono);
+  --font-heading: var(--font-fraunces);
+  --font-body: var(--font-inter);
   --animate-fade-up: fadeUp 0.6s ease-out forwards;
   --animate-fade-up-1: fadeUp 0.6s ease-out 0.15s forwards;
   --animate-fade-up-2: fadeUp 0.6s ease-out 0.3s forwards;
   --animate-fade-up-3: fadeUp 0.6s ease-out 0.45s forwards;
   --animate-fade-up-4: fadeUp 0.6s ease-out 0.6s forwards;
   --animate-bounce-slow: bounceSlow 2.2s ease-in-out infinite;
-}
-
-.dark {
-  --color-bg: #0A1412;
-  --color-card: #0F1B18;
-  --color-card-alt: #0C1715;
-  --color-ink: #E8F2EF;
-  --color-muted: #8CA39D;
-  --color-border: #1E2E29;
-  --color-accent: #34D399;
-  --color-accent-hover: #6EE7B7;
-  --color-accent-soft: rgba(52, 211, 153, 0.12);
-  --color-accent-strong: #10B981;
-  --color-navy: #93A9DA;
-  --color-navy-soft: rgba(147, 169, 218, 0.1);
 }
 
 @keyframes fadeUp {
@@ -79,6 +93,7 @@ body {
   background-color: var(--color-bg);
   color: var(--color-ink);
   font-family: var(--font-body), system-ui, sans-serif;
+  letter-spacing: -0.01em;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
@@ -97,4 +112,13 @@ body {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
   border-radius: 2px;
+}
+
+/* Contra's signature two-layer soft shadow — the only shadow vocabulary
+   for filled buttons. No colored glows, no gradients on buttons/cards. */
+.shadow-action {
+  box-shadow: 0 4px 10px rgba(34, 40, 52, 0.05), -2px 18px 18px rgba(34, 40, 52, 0.04);
+}
+.dark .shadow-action {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25), -2px 18px 18px rgba(0, 0, 0, 0.15);
 }
