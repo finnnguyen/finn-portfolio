@@ -96,7 +96,7 @@
 %----------HEADING----------
 \begin{center}
     \textbf{\Huge \scshape Finn Nguyen} \\ \vspace{1pt}
-    \small (657) 384-3101 $|$ \href{mailto:Finnnguyen93@gmail.com}{\underline{Finnnguyen93@gmail.com}} $|$
+    \small Garden Grove, CA $|$ (657) 384-3101 $|$ \href{mailto:Finnnguyen93@gmail.com}{\underline{Finnnguyen93@gmail.com}} $|$
     \href{https://linkedin.com/in/finn-nguyen}{\underline{linkedin.com/in/finn-nguyen}} $|$
     \href{https://github.com/finnnguyen}{\underline{github.com/finnnguyen}} $|$
     \href{https://finn-portfolio-phi.vercel.app/}{\underline{finn-portfolio-phi.vercel.app}}
@@ -122,14 +122,14 @@
       \resumeProjectHeading
           {\textbf{Turn Rotation -- Concurrency-Safe Fairness Engine} $|$ \emph{Next.js, PostgreSQL, Amplify}}{2026}
           \resumeItemListStart
-            \resumeItem{Manually audited \textasciitilde350 real rotation assignments against the fairness rules (98\% correct), traced the 2\% error rate to two specific logic bugs, reproduced each with a failing test, and shipped fixes the same day}
-            \resumeItem{Built a concurrency-safe staff rotation queue with atomic Postgres functions and optimistic concurrency, eliminating race conditions an app-level lock would miss under simultaneous requests}
-            \resumeItem{Ran CI with PostgreSQL in Docker for 53 automated tests on every push; deployed via AWS Amplify with Textract-assisted menu import behind a manager-review gate}
+            \resumeItem{Manually audited about 350 real rotation assignments against the fairness rules (98\% correct), traced the 2\% error rate to two specific logic bugs, reproduced each with a failing test, and shipped fixes the same day}
+            \resumeItem{Built a concurrency-safe staff rotation queue handling about 50 assignments/day, using atomic Postgres functions with optimistic concurrency to guarantee fair turns under simultaneous requests}
+            \resumeItem{Ran CI with PostgreSQL in Docker for 53 automated tests on every push, verified with mutation testing; deployed via AWS Amplify with Textract-assisted menu import behind a manager-review gate}
           \resumeItemListEnd
       \resumeProjectHeading
           {\textbf{79 Nails \& Hair Booking Platform} $|$ \emph{Next.js, PostgreSQL, Claude API}}{2026}
           \resumeItemListStart
-            \resumeItem{Shipped a live booking platform for a working salon business; prevented double-booked appointments at the database level with a Postgres exclusion constraint, not an app-level check a race condition could slip past}
+            \resumeItem{Shipped a live booking platform serving a 7-stylist salon with 41 services; prevented double-booked appointments at the database level with a Postgres exclusion constraint, not an app-level check a race condition could slip past}
             \resumeItem{Found and patched a stored-HTML-injection vulnerability in outbound customer emails before it reached production}
             \resumeItem{Gated 18+ production deploys behind CI (lint, typecheck, test, build) and 26 automated tests; 100/100 Lighthouse score for accessibility and SEO}
           \resumeItemListEnd
@@ -148,17 +148,10 @@
 
     \resumeSubheading
       {Manager}{Aug. 2026 -- Present}
-      {79 Nails and Hair}{Garden Grove, CA}
+      {79 Nails and Hair -- promoted from Assistant Manager (2023 -- Aug. 2026)}{Garden Grove, CA}
       \resumeItemListStart
-        \resumeItem{Independently run daily operations for a high-traffic salon; owner checks in only 2--3x/week}
-        \resumeItem{Own staff rotation, cash flow, and customer complaint resolution; enforce healthcare-grade cleanliness standards as top priority}
-      \resumeItemListEnd
-
-    \resumeSubheading
-      {Assistant Manager}{2023 -- Aug. 2026}
-      {79 Nails and Hair}{Garden Grove, CA}
-      \resumeItemListStart
-        \resumeItem{Managed daily operations, staff scheduling, and customer service for 3 years, earning promotion to Manager through consistently reliable execution under pressure}
+        \resumeItem{Run daily operations for a 7-person salon -- staff rotation, scheduling, and cash reconciliation -- reporting to the owner only 2--3x/week}
+        \resumeItem{Identified real scheduling and turn-fairness problems on the floor and built the booking platform and rotation engine described under Projects}
       \resumeItemListEnd
 
   \resumeSubHeadingListEnd
@@ -169,7 +162,8 @@
  \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
      \textbf{Languages}{: Python, JavaScript/TypeScript, SQL} \\
-     \textbf{Frameworks}{: Next.js, React, Redux Toolkit, Strapi, Anthropic Claude API} \\
+     \textbf{Frameworks}{: Next.js, React, Redux Toolkit, Strapi} \\
+     \textbf{AI}{: Anthropic Claude API} \\
      \textbf{Databases}{: PostgreSQL (Supabase, Row Level Security), MySQL} \\
      \textbf{Developer Tools}{: Git, GitHub Actions (CI/CD), Docker, Vitest, Jest, Sentry, Vercel, AWS Amplify}
     }}
