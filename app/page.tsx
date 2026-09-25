@@ -155,6 +155,42 @@ const projects = [
   },
   {
     rank: 3,
+    title: "DataChat — Natural Language CSV Queries",
+    type: "Personal" as const,
+    media: {
+      type: "image" as const,
+      src: "/projects/datachat/screenshot.jpg",
+      alt: "DataChat GitHub repository page",
+    },
+    oneLiner:
+      "Upload any CSV and ask questions in plain English — GPT-4o-mini converts the question to SQL, runs it against SQLite, and explains the result.",
+    bullets: [
+      "Improved exact SQL correctness from 8/12 to 12/12 on a small labeled evaluation suite by adding few-shot examples, output validation, and a self-correction loop — a suite this size shows the iteration worked, not that the tool generalizes broadly",
+      "Two-LLM-call pipeline: SQL generation + result explanation — keeps answers grounded in real query output",
+      "Self-correction retry loop feeds SQL errors back to the model for automatic fix",
+    ],
+    problem:
+      "People with data but no SQL skills can't get quick answers from their own spreadsheets without asking a developer. Build a tool that accepts any CSV, takes a plain-English question, and returns an accurate, readable answer.",
+    contribution: "Entire project — prompt engineering, backend pipeline, safety layer, eval framework, and Flask web interface. Personal project for CPSC 254 at Cal State Fullerton.",
+    tech: [
+      { label: "Python" },
+      { label: "Flask" },
+      { label: "OpenAI GPT-4o-mini" },
+      { label: "SQLite" },
+      { label: "pandas" },
+    ],
+    challenges:
+      "Every CSV has different column names the model has never seen — one character off and the SQL fails. Phrases like 'per sale' or 'more than 3 times' map to different SQL patterns (AVG vs COUNT) that the model had to learn from examples. SQLite-specific syntax (e.g. HAVING COUNT(*)) also needed to be taught explicitly. Prompt injection via malicious CSV column names was a real safety risk.",
+    solution:
+      "Two-stage LLM pipeline: call 1 generates SQL from schema + question using few-shot examples; call 2 explains the real query results in plain English. Self-correction loop retries on SQL failure by feeding the error back to the model. Safety layer sanitizes column names before they enter the prompt and blocks any non-SELECT output. Prompt iterated across 3 versions using a 12-case eval suite to track accuracy.",
+    results:
+      "12/12 on the labeled eval suite (filters, aggregations, GROUP BY, HAVING, date filters, safety prompts, out-of-scope questions), up from 8/12 on the first prompt version. Inference under 1–2 seconds end-to-end. The eval suite is small and hand-written, so this measures iteration on those 12 cases, not accuracy on arbitrary CSVs or questions.",
+    demonstrates:
+      "Prompt engineering with a measurable eval loop instead of guessing at wording. Also full-stack AI app development: CSV processing, LLM orchestration, safety design, and a working web interface.",
+    githubUrl: "https://github.com/finnnguyen/datachat",
+  },
+  {
+    rank: 4,
     title: "Spam Tool Kit",
     type: "Team" as const,
     media: {
@@ -189,42 +225,6 @@ const projects = [
     demonstrates:
       "Taking a multi-feature ML system from training to a working, user-facing product — not just the model, but the full pipeline including file handling, live inference, and structured UI output across four different tools.",
     githubUrl: "https://github.com/finnnguyen/AI-Spam_Detect",
-  },
-  {
-    rank: 4,
-    title: "DataChat — Natural Language CSV Queries",
-    type: "Personal" as const,
-    media: {
-      type: "image" as const,
-      src: "/projects/datachat/screenshot.jpg",
-      alt: "DataChat GitHub repository page",
-    },
-    oneLiner:
-      "Upload any CSV and ask questions in plain English — GPT-4o-mini converts the question to SQL, runs it against SQLite, and explains the result.",
-    bullets: [
-      "Improved exact SQL correctness from 8/12 to 12/12 on a small labeled evaluation suite by adding few-shot examples, output validation, and a self-correction loop — a suite this size shows the iteration worked, not that the tool generalizes broadly",
-      "Two-LLM-call pipeline: SQL generation + result explanation — keeps answers grounded in real query output",
-      "Self-correction retry loop feeds SQL errors back to the model for automatic fix",
-    ],
-    problem:
-      "People with data but no SQL skills can't get quick answers from their own spreadsheets without asking a developer. Build a tool that accepts any CSV, takes a plain-English question, and returns an accurate, readable answer.",
-    contribution: "Entire project — prompt engineering, backend pipeline, safety layer, eval framework, and Flask web interface. Personal project for CPSC 254 at Cal State Fullerton.",
-    tech: [
-      { label: "Python" },
-      { label: "Flask" },
-      { label: "OpenAI GPT-4o-mini" },
-      { label: "SQLite" },
-      { label: "pandas" },
-    ],
-    challenges:
-      "Every CSV has different column names the model has never seen — one character off and the SQL fails. Phrases like 'per sale' or 'more than 3 times' map to different SQL patterns (AVG vs COUNT) that the model had to learn from examples. SQLite-specific syntax (e.g. HAVING COUNT(*)) also needed to be taught explicitly. Prompt injection via malicious CSV column names was a real safety risk.",
-    solution:
-      "Two-stage LLM pipeline: call 1 generates SQL from schema + question using few-shot examples; call 2 explains the real query results in plain English. Self-correction loop retries on SQL failure by feeding the error back to the model. Safety layer sanitizes column names before they enter the prompt and blocks any non-SELECT output. Prompt iterated across 3 versions using a 12-case eval suite to track accuracy.",
-    results:
-      "12/12 on the labeled eval suite (filters, aggregations, GROUP BY, HAVING, date filters, safety prompts, out-of-scope questions), up from 8/12 on the first prompt version. Inference under 1–2 seconds end-to-end. The eval suite is small and hand-written, so this measures iteration on those 12 cases, not accuracy on arbitrary CSVs or questions.",
-    demonstrates:
-      "Prompt engineering with a measurable eval loop instead of guessing at wording. Also full-stack AI app development: CSV processing, LLM orchestration, safety design, and a working web interface.",
-    githubUrl: "https://github.com/finnnguyen/datachat",
   },
 ];
 
@@ -425,7 +425,7 @@ export default function Home() {
               <div className="mt-6 pt-5 border-t border-white/10 space-y-2.5">
                 <div className="flex justify-between font-body text-xs">
                   <span className="text-mist/70">Real assignments validated</span>
-                  <span className="font-mono text-white font-medium">350+</span>
+                  <span className="font-mono text-white font-medium">~350</span>
                 </div>
                 <div className="flex justify-between font-body text-xs">
                   <span className="text-mist/70">Automated tests written</span>
@@ -498,17 +498,18 @@ export default function Home() {
             <div>
               <div className="flex flex-wrap items-baseline gap-2 mb-1">
                 <a
-                  href="https://github.com/finnnguyen"
+                  href="https://github.com/finnnguyen/house-price-heart-disease-ml"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-body text-sm font-medium text-electric-blue underline-offset-2 hover:underline"
                 >
-                  GitHub Repository Data Analysis
+                  Supervised Learning — House Price &amp; Disease Prediction
                 </a>
-                <span className="font-body text-xs text-muted">Personal · Python, pandas, Matplotlib · 2026</span>
+                <span className="font-body text-xs text-muted">Coursework · Python, scikit-learn, pandas · 2026</span>
               </div>
               <p className="font-body text-sm text-muted">
-                EDA across 215,000+ repositories — language trends, star/fork patterns, and AI-repo growth over time.
+                Regression on Ames Housing prices and heart-disease classification — feature selection and depth limits took a
+                Decision Tree from 78% to 85% test accuracy.
               </p>
             </div>
             <div className="pt-5 border-t border-border">
@@ -525,8 +526,7 @@ export default function Home() {
               </div>
               <p className="font-body text-sm text-muted">
                 Full-stack storefront built with a 3-person team. I implemented auth, payments, and
-                inventory/order management. Repo is hosted under a teammate&apos;s account. Live demo is
-                currently offline due to a documented data-sync issue between the CMS and database.
+                inventory/order management. Repo is hosted under a teammate&apos;s account.
               </p>
             </div>
           </div>
@@ -742,7 +742,7 @@ export default function Home() {
               Download Resume
             </h3>
             <p className="font-body text-sm text-muted mb-5">
-              Tailored by role — pick the one closest to what you&apos;re hiring for.
+              Software Engineer resume (PDF).
             </p>
             <div className="flex flex-wrap gap-2">
               {resumeDownloads.map(({ label, file }) => (
