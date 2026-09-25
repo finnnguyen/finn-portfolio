@@ -1,4 +1,5 @@
 import Nav from "./components/Nav";
+import { Mascot } from "./components/Mascot";
 import PipelineDiagram from "./components/PipelineDiagram";
 import ProjectCard from "./components/ProjectCard";
 import SectionHeader from "./components/SectionHeader";
@@ -307,6 +308,14 @@ export default function Home() {
       >
         <div className="grid lg:grid-cols-[1fr_auto] gap-14 items-center">
           <div className="max-w-2xl">
+            <Mascot
+              directions="/mascots/grad-directions.webp"
+              reactions="/mascots/grad-reactions.webp"
+              label="site mascot"
+              size={88}
+              className="-ml-2 mb-3 opacity-0 animate-[fadeUp_0.6s_ease-out_forwards]"
+            />
+
             {/* Pills */}
             <div
               className="flex flex-wrap gap-2 mb-6 opacity-0 animate-[fadeUp_0.6s_ease-out_forwards]"
