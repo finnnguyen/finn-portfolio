@@ -171,7 +171,7 @@ const projects = [
     ],
     problem:
       "People with data but no SQL skills can't get quick answers from their own spreadsheets without asking a developer. Build a tool that accepts any CSV, takes a plain-English question, and returns an accurate, readable answer.",
-    contribution: "Entire project — prompt engineering, backend pipeline, safety layer, eval framework, and Flask web interface. Personal project for CPSC 254 at Cal State Fullerton.",
+    contribution: "Entire project — prompt engineering, backend pipeline, safety layer, eval framework, and Flask web interface. Solo project for CPSC 254 at Cal State Fullerton.",
     tech: [
       { label: "Python" },
       { label: "Flask" },
@@ -505,7 +505,7 @@ export default function Home() {
                 >
                   Supervised Learning — House Price &amp; Disease Prediction
                 </a>
-                <span className="font-body text-xs text-muted">Coursework · Python, scikit-learn, pandas · 2026</span>
+                <span className="font-body text-xs text-muted">Personal · Python, scikit-learn, pandas · 2026</span>
               </div>
               <p className="font-body text-sm text-muted">
                 Regression on Ames Housing prices and heart-disease classification — feature selection and depth limits took a
