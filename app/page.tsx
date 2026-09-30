@@ -11,14 +11,10 @@ import {
   CheckIcon,
 } from "./components/Icons";
 
-// ─── Architecture diagram for 79 Nails & Hair (used in expandable section) ──
-function SalonArchDiagram() {
-  const layers = [
-    { label: "Next.js 16 (App Router)", note: "Server Actions, RSC, Zod-validated input" },
-    { label: "Postgres RLS + Rate Limiting", note: "Auth-scoped policies, SECURITY DEFINER functions" },
-    { label: "Supabase (Postgres, Auth)", note: "EXCLUDE constraint prevents double-booking" },
-    { label: "Sentry + GitHub Actions CI", note: "Error tracking, lint/typecheck/test/build gate" },
-  ];
+// ─── Architecture diagrams (used in each project's expandable section) ─────
+type Layer = { label: string; note: string };
+
+function ArchDiagram({ layers }: { layers: Layer[] }) {
   return (
     <div className="flex flex-col gap-0 items-start w-full max-w-sm">
       {layers.map((layer, i) => (
@@ -39,34 +35,35 @@ function SalonArchDiagram() {
   );
 }
 
-// ─── Architecture diagram for Turn Rotation (used in expandable section) ────
-function TurnRotationArchDiagram() {
-  const layers = [
-    { label: "Next.js (App Router)", note: "Server Actions, instrumentation hooks" },
-    { label: "Atomic Postgres functions", note: "Rotation fairness, optimistic concurrency" },
-    { label: "Supabase (Postgres, RLS, Auth, Realtime)", note: "Partial unique indexes prevent double-booking staff" },
-    { label: "AWS Amplify + Amazon Textract", note: "Manager-reviewed menu import" },
-    { label: "Sentry + GitHub Actions CI", note: "Source-mapped error tracking, integration tests against real Postgres" },
-  ];
-  return (
-    <div className="flex flex-col gap-0 items-start w-full max-w-sm">
-      {layers.map((layer, i) => (
-        <div key={layer.label} className="flex flex-col items-start">
-          <div className="flex items-center gap-3">
-            <div className="w-2 h-2 rounded-full bg-current/40 shrink-0" />
-            <div>
-              <span className="font-body text-xs font-medium">{layer.label}</span>
-              <span className="font-body text-xs opacity-60 ml-2">— {layer.note}</span>
-            </div>
-          </div>
-          {i < layers.length - 1 && (
-            <div className="ml-[3.5px] h-5 w-px border-l border-dashed border-current/25" />
-          )}
-        </div>
-      ))}
-    </div>
-  );
-}
+const salonLayers: Layer[] = [
+  { label: "Next.js 16 (App Router)", note: "Server Actions, RSC, Zod-validated input" },
+  { label: "Postgres RLS + Rate Limiting", note: "Auth-scoped policies, SECURITY DEFINER functions" },
+  { label: "Supabase (Postgres, Auth)", note: "EXCLUDE constraint prevents double-booking" },
+  { label: "Sentry + GitHub Actions CI", note: "Error tracking, lint/typecheck/test/build gate" },
+];
+
+const turnRotationLayers: Layer[] = [
+  { label: "Next.js (App Router)", note: "Server Actions, instrumentation hooks" },
+  { label: "Atomic Postgres functions", note: "Rotation fairness, optimistic concurrency" },
+  { label: "Supabase (Postgres, RLS, Auth, Realtime)", note: "Partial unique indexes prevent double-booking staff" },
+  { label: "AWS Amplify + Amazon Textract", note: "Manager-reviewed menu import" },
+  { label: "Sentry + GitHub Actions CI", note: "Source-mapped error tracking, integration tests against real Postgres" },
+];
+
+const dataChatLayers: Layer[] = [
+  { label: "Flask web app", note: "CSV upload and plain-English question" },
+  { label: "Safety layer", note: "Sanitizes column names before they reach the prompt" },
+  { label: "GPT-4o-mini call 1", note: "Writes SQL from the schema; retries with the error on failure" },
+  { label: "SQLite (read-only)", note: "Runs the query; only SELECT allowed" },
+  { label: "GPT-4o-mini call 2", note: "Explains the real result rows in plain English" },
+];
+
+const spamToolKitLayers: Layer[] = [
+  { label: "Flask web app", note: "Tabbed HTML/CSS/JS interface for all four modules" },
+  { label: "CountVectorizer", note: "Bag-of-words features from email and SMS text" },
+  { label: "Multinomial Naive Bayes", note: "Separate email and SMS models, 80/20 train/test split" },
+  { label: "Jaccard similarity", note: "Plagiarism check between two texts" },
+];
 
 // ─── Project data ─────────────────────────────────────────────────────────────
 const projects = [
@@ -80,11 +77,11 @@ const projects = [
       alt: "Walkthrough of the live 79 Nails & Hair booking flow — selecting a service, choosing a stylist, and picking a real available time slot",
     },
     oneLiner:
-      "A live booking platform for the salon I work at. I built the app on Next.js and Supabase, enforced no-double-booking at the database level, secured customer data with Row Level Security, and added a Claude-powered natural-language service search.",
+      "A live booking website for the salon I manage. Customers pick a service, a stylist, and a real open time slot, or describe what they want in plain English and let the AI search find it. Built with Next.js, Supabase, and the Claude API.",
     bullets: [
-      "No-double-booking guaranteed at the database level via a Postgres exclusion constraint — not an app-level check a race condition could slip past",
-      "Claude-powered natural-language service search re-validates every AI match against the real catalog before it reaches a customer, so a hallucinated service can never be shown",
-      "26 automated tests, 18 tracked migrations, and CI gating every push; 41 real services and 7 staff members live in production",
+      "The database itself rejects overlapping appointments, so a stylist can never be double-booked, even if two customers click at the same moment",
+      "Every AI search result is checked against the real service list before it is shown, so a customer never sees a service that does not exist",
+      "Live in production with 41 real services and 7 staff; 26 automated tests and CI check every change before it ships",
     ],
     problem:
       "The salon needed real online booking — not a mockup — with the non-negotiables any production booking system has: no double-booked stylists, no exposed customer data, and no silent failures once it's live.",
@@ -107,7 +104,7 @@ const projects = [
       "Correctness enforced at the database layer, security modeled as data-access rules instead of scattered checks, and verifying claims against the real deployed system rather than assuming a passing test means the work is done. The AI search applies the same standard to an LLM feature: grounded in real data, defended against hallucination in code, and designed to fall back to normal browsing if the model call fails.",
     githubUrl: "https://github.com/finnnguyen/79-nails-and-hair-website",
     demoUrl: "https://79nailsandhair.vercel.app",
-    archDiagram: <SalonArchDiagram />,
+    archDiagram: <ArchDiagram layers={salonLayers} />,
   },
   {
     rank: 2,
@@ -124,11 +121,11 @@ const projects = [
       password: "TurnRotationDemo2026!",
     },
     oneLiner:
-      "A concurrency-safe salon operations platform that manages a live employee rotation queue — atomic Postgres functions guarantee fairness under concurrent requests, Row Level Security enforces authorization, and AWS Textract turns an uploaded price list into manager-reviewed catalog drafts.",
+      "An app that decides which stylist takes the next walk-in customer, so turns stay fair. Managers see a live queue, and an uploaded price list becomes draft menu items (Amazon Textract) that a manager approves before they go live.",
     bullets: [
-      "Manually validated about 350 real rotation assignments (about 50/day over a week) against the fairness rules — 98% correct; traced the 2% gap to two real bugs, reproduced each with a failing test, fixed both, and shipped to production",
-      "Rotation fairness enforced inside atomic Postgres functions with optimistic concurrency — not application-level checks a race condition could slip past",
-      "53 automated tests (unit + real-Postgres integration) verified via mutation testing; CI spins up Supabase in Docker to run them on every push",
+      "Used on the salon floor for a week (about 50 assignments a day). I hand-checked all ~350 against the fairness rules: 98% were correct, and I traced the other 2% to two real bugs, reproduced each with a failing test, fixed both, and shipped to production",
+      "The queue stays correct even when two managers act at the same moment, because each update happens as one atomic step inside the database",
+      "53 automated tests run on every push, including tests against a real Postgres database",
     ],
     problem:
       "Salon managers needed to run a fair, auditable walk-in queue across two independent rotations (a shared dollar rotation and a shared haircut rotation) without losing arrival order, qualifications, or partial credit — and staff needed to actually understand why they were or weren't assigned a customer.",
@@ -151,7 +148,7 @@ const projects = [
       "The same production bar as 79 Nails & Hair, applied to a more concurrency-sensitive domain: correctness enforced at the database layer, an AI-assisted feature with a mandatory human gate rather than blind automation, and the habit of verifying claims against the real deployed system — which is exactly how a real bug (silently broken auth middleware) got caught before it mattered instead of after.",
     githubUrl: "https://github.com/finnnguyen/turn-rotation",
     demoUrl: "https://main.d1fp0wl4mlqx0q.amplifyapp.com",
-    archDiagram: <TurnRotationArchDiagram />,
+    archDiagram: <ArchDiagram layers={turnRotationLayers} />,
   },
   {
     rank: 3,
@@ -165,9 +162,9 @@ const projects = [
     oneLiner:
       "Upload any CSV and ask questions in plain English — GPT-4o-mini converts the question to SQL, runs it against SQLite, and explains the result.",
     bullets: [
-      "Improved exact SQL correctness from 8/12 to 12/12 on a small labeled evaluation suite by adding few-shot examples, output validation, and a self-correction loop — a suite this size shows the iteration worked, not that the tool generalizes broadly",
-      "Two-LLM-call pipeline: SQL generation + result explanation — keeps answers grounded in real query output",
-      "Self-correction retry loop feeds SQL errors back to the model for automatic fix",
+      "Raised accuracy on my 12-question test set from 8/12 to 12/12 by adding example questions, checking the AI's output, and retrying when a query fails. The test set is small, so this shows the changes worked, not that it handles every CSV",
+      "Two AI calls: one writes the SQL, and a second explains the real query result, so answers come from the actual data",
+      "When a query fails, the error goes back to the AI so it can fix its own SQL",
     ],
     problem:
       "People with data but no SQL skills can't get quick answers from their own spreadsheets without asking a developer. Build a tool that accepts any CSV, takes a plain-English question, and returns an accurate, readable answer.",
@@ -188,6 +185,7 @@ const projects = [
     demonstrates:
       "Prompt engineering with a measurable eval loop instead of guessing at wording. Also full-stack AI app development: CSV processing, LLM orchestration, safety design, and a working web interface.",
     githubUrl: "https://github.com/finnnguyen/datachat",
+    archDiagram: <ArchDiagram layers={dataChatLayers} />,
   },
   {
     rank: 4,
@@ -225,6 +223,7 @@ const projects = [
     demonstrates:
       "Taking a multi-feature ML system from training to a working, user-facing product — not just the model, but the full pipeline including file handling, live inference, and structured UI output across four different tools.",
     githubUrl: "https://github.com/finnnguyen/AI-Spam_Detect",
+    archDiagram: <ArchDiagram layers={spamToolKitLayers} />,
   },
 ];
 
