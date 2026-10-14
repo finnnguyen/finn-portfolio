@@ -165,7 +165,7 @@ const projects = [
     media: {
       type: "image" as const,
       src: "/projects/employee-task-manager/screenshot.jpg",
-      alt: "Early build of the Employee Task Manager owner dashboard, logged in as the owner and listing a test employee",
+      alt: "Employee Task Manager owner dashboard showing the create-task form and two assigned tasks with their status and assignee",
     },
     oneLiner:
       "A web app where a business owner adds employees, invites them to set up their own accounts, assigns tasks, and messages them, while each employee sees and updates only their own tasks. Built with React, Express, Firebase Firestore, and Socket.IO. Work in progress: runs locally, not yet deployed.",
@@ -175,7 +175,7 @@ const projects = [
       "Task lists refresh live over Socket.IO when the owner or an employee changes a task, and only signed-in users can connect",
     ],
     demoNote:
-      "In progress: runs locally against a real Firestore database and has not been deployed. There are no automated tests yet, and the screenshot is from an early build.",
+      "In progress: runs locally against a real Firestore database and has not been deployed. There are no automated tests yet.",
     problem:
       "A small business owner needs one place to manage staff, hand out work, and see progress, without sharing one login or sending tasks through scattered texts. Employees should see only their own work, and only the owner should be able to add people or assign tasks.",
     contribution:
@@ -193,7 +193,7 @@ const projects = [
     solution:
       "Unique emails and usernames are claimed through separate index documents (a SHA-256 of the email, the lowercase username) inside Firestore transactions, so a duplicate is rejected rather than raced. One-time codes are bcrypt-hashed, expire after 5 minutes, stop accepting guesses after 5 wrong tries, and can only be requested once every 60 seconds; all of that state is updated inside a transaction. Invite tokens are random, stored only as hashes, expire after 24 hours, and are cleared once the account is set up. If the invite email fails, the new employee record is rolled back. JWTs are pinned to HS256 and expire after 1 hour, and an employee can change only the status of their own tasks. For development, text and email delivery can log to the console instead, and the code refuses to start in that mode in production.",
     results:
-      "Implemented: owner login with a one-time code, employee invite and account setup, employee login, owner screens to add, edit, and delete employees and tasks, employee task status updates, owner–employee messaging, and live task-list refreshes. Manually verified so far: owner login with a console-delivered code and the authenticated employee list; the newer screens build and lint cleanly but still need full end-to-end testing. Not done yet: real SMS delivery (blocked by the Twilio trial limit), live chat updates, work schedules, automated tests, responsive styling, and deployment.",
+      "Implemented: owner login with a one-time code, employee invite and account setup, employee login, owner screens to add, edit, and delete employees and tasks, employee task status updates, owner–employee messaging, and live task-list refreshes. Manually tested end to end in the local app: owner login with a console-delivered code, adding an employee, creating and assigning tasks, employee status updates, and messages in both directions between owner and employee. There is no automated test suite yet. Not done yet: real SMS delivery (blocked by the Twilio trial limit), live chat updates, work schedules, automated tests, responsive styling, and deployment.",
     demonstrates:
       "Backend fundamentals beyond a SQL database: designing for correctness on a NoSQL store that lacks built-in constraints, hardening authentication (hashed codes, attempt limits, expiring single-use invites), and server-enforced role-based access, plus honesty about what is still unfinished.",
     githubUrl: "https://github.com/finnnguyen/employee-task-manager",
